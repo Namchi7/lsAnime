@@ -1,0 +1,443 @@
+.container {
+    width: 95%;
+    max-width: 65rem;
+    min-height: calc(100vh - 13rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.pageHeader {
+    width: 100%;
+    /* font-size: 2.5rem;
+    font-weight: 600;
+    text-align: left; */
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.allFilterContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filterRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    flex-shrink: 1;
+    flex-grow: 1;
+    width: 25%;
+    /* min-width: 25%; */
+}
+
+.filterLabel {
+    padding-left: 0.2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.filterSelect {
+    width: 100%;
+    position: relative;
+    background-color: antiquewhite;
+    border-radius: 0.5rem;
+    /* overflow: hidden; */
+    color: black;
+}
+
+.inputDiv {
+    /* width: 15.5rem; */
+    padding-right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.filterInput {
+    width: calc(100% - 0.8rem);
+    /* width: 15rem; */
+    padding: 1rem;
+}
+
+.dropdownArrow {
+    width: 0.8rem;
+    transform: rotate(0deg);
+    transition: 0.3s all ease;
+}
+
+.dropdownArrow:hover {
+    cursor: pointer;
+}
+
+.filterDropdown {
+    position: absolute;
+    width: 100%;
+    max-height: 10rem;
+    display: none;
+    /* display: flex; */
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: antiquewhite;
+    overflow: scroll;
+    z-index: 5;
+}
+
+ul {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.2rem;
+    font-size: 0.85rem;
+}
+
+ul > li {
+    padding-bottom: 0.5rem;
+    width: 100%;
+}
+
+.filterDropdown > ul > li:hover {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.filterGenre {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.genreHeader {
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.genreList {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.genres {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+    border: 2px solid rgba(101, 101, 101, 0.75);
+    border-radius: 0.5rem;
+}
+
+.genres:hover {
+    cursor: pointer;
+    color: green;
+    border: 2px solid green;
+    background-color: rgba(0, 128, 0, 0.05);
+}
+
+.genreSelected {
+    color: green;
+    border: 2px solid green;
+    background-color: rgba(0, 128, 0, 0.05);
+}
+
+.filterBtn {
+    text-align: center;
+    width: 5rem;
+    background-color: green;
+    color: white;
+    padding: 0.5rem;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.filterBtn:hover {
+    cursor: pointer;
+    color: green;
+    background-color: transparent;
+    border: 2px solid green;
+}
+
+.filterResults {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.resultTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.resultCount {
+    font-size: 0.8rem;
+    font-weight: 400;
+    border-radius: 0.2rem;
+    background-color: #dfdfdf;
+    padding: 0.2rem 0.3rem;
+}
+
+.tags {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.tagIcon {
+    /* height: 1.5rem; */
+    width: 1.7rem;
+}
+
+.tag {
+    /* height: 1.5rem; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #D9D9D9;
+    border-radius: 0.3rem;
+    padding-left: 0.5rem;
+}
+
+.tagName {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.removeTag {
+    height: 1.5rem;
+}
+
+.removeTag:hover {
+    cursor: pointer;
+}
+
+.allAnimeTiles {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.animeTilesRow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.animeTile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 10rem;
+}
+
+.animePoster {
+    border-radius: 0.5rem;
+    width: 10rem;
+    height: 232.45px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.animeInfo {
+    width: 100%;
+    font-size: 0.9rem;
+    overflow: hidden;
+    height: 232.45px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.animeName {
+    display: inline;
+    font-size: 0.9rem;
+    /* font-weight: 600; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-transform: capitalize;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.animeGenres {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-bottom: 0.5rem;
+}
+
+.animeGenre {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    font-weight: 600;
+}
+
+.animeSynopsis {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex-grow: 0;
+    flex-shrink: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.animeSynopsis::after {
+    content: "";
+    position: absolute;
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    opacity: 0.1;
+    z-index: 1;
+    /* background: #2a2c31; */
+    background: linear-gradient(0deg,#2a2c31 0,rgba(42,44,49,.1) 10%,rgba(255, 255, 255, 0.7) 11%,rgba(255, 255, 255, 0.7) 100%);
+}
+
+.pageBtns {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prevBtn, .nextBtn, .firstBtn, .lastBtn {
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    font-size: 0.8em;
+}
+
+.prevBtn:hover, .nextBtn:hover, .firstBtn:hover, .lastBtn:hover {
+    cursor: pointer;
+    background-color: rgba(202, 233, 98, 0.25);
+    color: #ff5700;
+    border-color: #ff5700;
+}
+
+.firstBtn {
+    margin-right: 0.5rem;
+}
+
+.lastBtn {
+    margin-left: 0.5rem;
+}
+
+.pageNos {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pageNos > * {
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.pageNos > *:hover {
+    cursor: pointer;
+    /* background-color: rgba(216, 216, 216, 0.5); */
+    background-color: rgba(202, 233, 98, 0.25);
+    color: #ff5700;
+    border-color: #ff5700;
+}
+
+.currentPage {
+    background-color: rgba(202, 233, 98, 0.25);
+    color: #ff5700;
+    border-color: #ff5700;
+}
+
+@media screen and (max-width: 700px) {
+    .filterRow {
+        flex-wrap: wrap;
+    }
+
+    .filter {
+        min-width: 45%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .filterRow {
+        flex-wrap: wrap;
+    }
+
+    .filter {
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .allAnimeTiles {
+        justify-content: space-around;
+    }
+}

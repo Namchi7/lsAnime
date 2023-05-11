@@ -1,0 +1,159 @@
+.container {
+    width: 95%;
+    max-width: 65rem;
+    min-height: calc(100vh - 13rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.backgroundCover {
+    position: absolute;
+    min-width: 100vw;
+    min-height: 100vh;
+    inset: 0;
+    background-color: rgba(176, 176, 176, 0.5);
+    z-index: -1;
+}
+
+.basicInfoContainer {
+    width: 100%;
+    /* height: 232.45px; */
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.animePoster {
+    border-radius: 0.5rem;
+    width: 10rem;
+    height: 232.45px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.basicInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.synopsis {
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 0;
+}
+
+.otherInfoContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.row1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    background-color: rgba(90, 90, 90, 0.25);
+    backdrop-filter: blur(0 0 100px rgba(90, 90, 90, 0.25));
+}
+
+.row1Cols {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.topics {
+    font-weight: 600;
+}
+
+.otherRows {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.genreList {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.genre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+}
+
+.synonymRow {
+    align-items: flex-start;
+}
+
+.titleSynonyms {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    .basicInfoContainer {
+        flex-direction: column;
+    }
+
+    .animePoster {
+        align-self: center;
+    }
+
+    .row1 {
+        flex-wrap: wrap;
+        row-gap: 1rem;
+    }
+
+    .row1Cols {
+        flex-basis: 20%;
+    }
+}
+@media screen and (max-width: 450px) {
+    .basicInfoContainer {
+        flex-direction: column;
+    }
+
+    .animePoster {
+        align-self: center;
+    }
+
+    .row1 {
+        flex-wrap: wrap;
+        row-gap: 1rem;
+    }
+
+    .row1Cols {
+        flex-basis: 30%;
+    }
+}

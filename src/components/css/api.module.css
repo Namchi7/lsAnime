@@ -1,0 +1,171 @@
+.container {
+    width: 95%;
+    max-width: 65rem;
+    min-height: calc(100vh - 15rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: black;
+    overflow-y: hidden;
+}
+
+.table {
+    width: 100%;
+    gap: 0.5rem;
+}
+
+td, th {
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+    height: 5rem;
+}
+
+th {
+    height: 3rem;
+    background-color: rgb(213, 219, 225);
+}
+
+.first {
+    /* word-break: break-all; */
+}
+
+.first, .second {
+    min-width: 25%;
+}
+
+td.first {
+    background-color: rgb(220, 205, 186);
+}
+
+td.second {
+    background-color: rgb(254, 185, 253);
+}
+
+.third {
+    max-width: 50%;
+}
+
+td.third {
+    background-color: rgb(169, 251, 255);
+}
+
+.footRow > * {
+    height: 3rem;
+    background-color: aliceblue;
+}
+
+.tableContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tableRows {
+    height: max-content;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.tableRows > * {
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: aliceblue;
+}
+
+.api {
+    width: 3rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    box-shadow: 0 0 10px rgba(84, 84, 84, 0.25);
+    background-color: rgb(65, 69, 144);
+    color: white;
+}
+
+.about {
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    box-shadow: 0 0 10px rgba(84, 84, 84, 0.25);
+    background-color: rgb(65, 69, 144);
+    color: white;
+}
+
+.apiName {
+    width: 3rem;
+    height: 10rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    padding-left: 0.2rem;
+    box-shadow: 0 0 10px rgba(84, 84, 84, 0.25);
+    background-color: rgb(65, 69, 144);
+    color: white;
+}
+
+.apiLink {
+    transform: rotate(-90deg);
+}
+
+.info {
+    height: 10rem;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    padding-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(84, 84, 84, 0.25);
+    background-color: rgb(253, 168, 252);
+    color: black;
+}
+
+.pageNames {
+    padding: 1rem;
+    background-color: rgba(231, 231, 231, 0.3);
+    border-radius: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.lastRow {
+    width: calc(100% - 1rem);
+    text-align: center;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(84, 84, 84, 0.25);
+    background-color: rgb(65, 69, 144);
+    color: white;
+}
+
+@media screen and (max-width: 700px) {
+    .tableContainer {
+        font-size: 0.9rem
+    }
+}

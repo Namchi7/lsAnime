@@ -1,0 +1,178 @@
+.container {
+    width: 95%;
+    max-width: 65rem;
+    min-height: calc(100vh - 15rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.searchInput {
+    width: 100%;
+    flex-shrink: 1;
+    padding: 1rem 1.25rem;
+    /* background-color: rgba(163, 163, 163, 0.6); */
+    background-color: transparent;
+    /* color: rgb(255, 255, 255); */
+    border: 1px solid rgba(163, 163, 163, 0.6);
+    border-radius: 2rem;
+    color: rgb(163, 152, 152);
+    /* color: rgb(54, 136, 154); */
+}
+
+.searchIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    max-height: 100%;
+    aspect-ratio: 1/1;
+    background-color: #36889a;
+    inset: 0;
+    border-radius: 2rem;
+}
+
+.searchIconContainer:hover {
+    cursor: pointer;
+}
+
+.searchIcon {
+    height: 1.4rem;
+}
+
+.showResults {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.allAnimeTiles {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.animeTile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 10rem;
+}
+
+.animePoster {
+    border-radius: 0.5rem;
+    height: 232.45px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.animeName {
+    display: inline;
+    font-size: 0.9rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-transform: capitalize;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.animeName:hover::after {
+    content: attr(data-anime-name);
+    position: absolute;
+    display: block;
+    padding: 0.5rem;
+    background-color: rgb(50, 50, 50);
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 0.3rem;
+    top: 100%;
+    margin-top: 0.2rem;
+    font-size: 0.7rem;
+    z-index: 5;
+}
+
+.pageBtns {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prevBtn, .nextBtn, .firstBtn, .lastBtn {
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    font-size: 0.8em;
+}
+
+.prevBtn:hover, .nextBtn:hover, .firstBtn:hover, .lastBtn:hover {
+    cursor: pointer;
+    background-color: rgba(202, 233, 98, 0.25);
+    color: #ff5700;
+    border-color: #ff5700;
+}
+
+.firstBtn {
+    margin-right: 0.5rem;
+}
+
+.lastBtn {
+    margin-left: 0.5rem;
+}
+
+.pageNos {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pageNos > * {
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.pageNos > *:hover {
+    cursor: pointer;
+    /* background-color: rgba(216, 216, 216, 0.5); */
+    background-color: rgba(202, 233, 98, 0.25);
+    color: #ff5700;
+    border-color: #ff5700;
+}
+
+.currentPage {
+    background-color: rgba(202, 233, 98, 0.25);
+    color: #ff5700;
+    border-color: #ff5700;
+}
+
+@media screen and (max-width: 600px) {
+    .allAnimeTiles {
+        justify-content: space-around;
+    }
+}

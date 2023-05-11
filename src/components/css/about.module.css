@@ -1,0 +1,134 @@
+.container {
+    width: 95%;
+    max-width: 65rem;
+    min-height: calc(100vh - 15rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    margin-bottom: 1rem;
+}
+
+.author {
+    height: 15rem;
+    width: 15rem;
+    border: 5px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 600;
+    padding: 2px;
+    /* background: linear-gradient(-45deg,rgb(230, 100, 101), rgb(145, 152, 229)); */
+    /* background: linear-gradient(-45deg,rgb(240, 63, 63), rgb(156, 159, 185)); */
+    background-clip: content-box;
+}
+
+.name {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid black;
+    border-radius: 50%;
+    /* background: linear-gradient(-45deg,#e66465, #9198e5); */
+    background-image: linear-gradient(-30deg, rgba(141, 66, 5, 1),rgba(224, 150, 14, 1) 70%);
+    background-clip: text;
+    color: transparent;
+}
+
+.aman {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+}
+
+.linkContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.link {
+    color: white;
+    border-radius: 0.3rem;
+    height: 2.5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem;
+}
+
+.icon {
+    height: 1.8rem;
+}
+
+.linkText {
+    width: 100px;
+    height: 100%;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.linkText > span {
+    font-size: 1rem;
+    font-weight: 500;
+    height: 1rem;
+    line-height: 0.8rem;
+}
+
+.linkedIn {
+    background-color: #004992;
+}
+
+.linkedIn > .linkText {
+    background-color: #005FBE;
+    display: flex;
+    justify-content: center;
+}
+
+.github {
+    background-color: #171717;
+}
+
+.github > .linkText {
+    background-color: #2B2B2B;
+    display: flex;
+    justify-content: center;
+}
+
+.email {
+    background-color: #DD4200;
+}
+
+.email > .linkText {
+    background-color: #FF5004;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 700px) {
+    .linkContainer {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        gap: 10vh;
+    }
+}
