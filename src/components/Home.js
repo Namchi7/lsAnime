@@ -94,11 +94,21 @@ function Home() {
                     className={styles.animeTile}
                     key={index}
                   >
-                    <img
-                      src={item.images.jpg.large_image_url}
-                      alt={item.title_english}
-                      className={styles.animePoster}
-                    />
+                    <div
+                      className={styles.animePosterDiv}
+                      style={{
+                        backgroundImage: `url(${item.images.jpg.small_image_url})`,
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                      }}
+                    >
+                      <img
+                        src={item.images.jpg.large_image_url}
+                        alt={item.title_english}
+                        className={styles.animePoster}
+                      />
+                    </div>
                     <div
                       className={styles.animeName}
                       data-anime-name={item.titles[0].title}
@@ -132,11 +142,21 @@ function Home() {
                     className={styles.animeTile}
                     key={index}
                   >
-                    <img
-                      src={item.images.jpg.large_image_url}
-                      alt={item.title_english}
-                      className={styles.animePoster}
-                    />
+                    <div
+                      className={styles.animePosterDiv}
+                      style={{
+                        backgroundImage: `url(${item.images.jpg.small_image_url})`,
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                      }}
+                    >
+                      <img
+                        src={item.images.jpg.large_image_url}
+                        alt={item.title_english}
+                        className={styles.animePoster}
+                      />
+                    </div>
                     <div
                       className={styles.animeName}
                       data-anime-name={item.titles[0].title}
