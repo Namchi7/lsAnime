@@ -34,20 +34,22 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/filter" element={<Filter />} />
-        <Route exact path="/about" element={<About />} />
-        <Route path="/this-season" element={<ViewAllTiles />} />
-        <Route path="/upcoming-season" element={<ViewAllTiles />} />
-        <Route path="/top" element={<ViewAllTiles />} />
-        <Route path="/anime/:id" element={<Anime />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/recommendations" element={<Recommendations />} />
-        <Route path="/api" element={<Api />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <div className="appTop">
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/filter" element={<Filter />} />
+          <Route exact path="/about" element={<About />} />
+          <Route path="/this-season" element={<ViewAllTiles />} />
+          <Route path="/upcoming-season" element={<ViewAllTiles />} />
+          <Route path="/top" element={<ViewAllTiles />} />
+          <Route path="/anime/:id" element={<Anime />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/recommendations" element={<Recommendations />} />
+          <Route path="/api" element={<Api />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
 
       {/* <div className="goToTop" onClick={toTheTop}>
         Top

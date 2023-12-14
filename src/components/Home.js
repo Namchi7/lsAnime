@@ -8,15 +8,17 @@ function Home() {
   const loading = previewData.isLoading;
 
   document.body.style.backgroundImage = "";
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
   let thisSeason;
   let upcomingSeason;
   let top;
 
   if (!loading) {
-    thisSeason = previewData.data.thisSeason.data;
-    upcomingSeason = previewData.data.upcomingSeason.data;
-    top = previewData.data.top.data;
+    thisSeason = previewData?.data?.thisSeason.data;
+    upcomingSeason = previewData?.data?.upcomingSeason.data;
+    top = previewData?.data?.top.data;
     // console.log(previewData);
   }
 
@@ -44,11 +46,21 @@ function Home() {
                     className={styles.animeTile}
                     key={index}
                   >
-                    <img
-                      src={item.images.jpg.large_image_url}
-                      alt={item.title_english}
-                      className={styles.animePoster}
-                    />
+                    <div
+                      className={styles.animePosterDiv}
+                      style={{
+                        backgroundImage: `url(${item.images.jpg.small_image_url})`,
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                      }}
+                    >
+                      <img
+                        src={item.images.jpg.large_image_url}
+                        alt={item.title_english}
+                        className={styles.animePoster}
+                      />
+                    </div>
                     <div
                       className={styles.animeName}
                       data-anime-name={item.titles[0].title}

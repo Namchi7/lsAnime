@@ -1,96 +1,107 @@
 .container {
-    width: 95%;
-    max-width: 65rem;
-    min-height: calc(100vh - 13rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 1rem;
+  width: 95%;
+  max-width: 65rem;
+  min-height: calc(100vh - 13rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
 }
 
 .topicContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .topicHeader {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .topic {
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .viewAll {
-    font-size: 0.9rem;
-    color: rgb(79, 79, 79);
+  font-size: 0.9rem;
+  color: rgb(79, 79, 79);
 }
 
 .previewTiles {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: 1rem;
-    overflow-x: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none; 
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 1rem;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .previewTiles::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .animeTile {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 0.5rem;
-    width: 10rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 10rem;
+}
+
+.animePosterDiv {
+  border-radius: 0.5rem;
+  height: 232.45px;
+  aspect-ratio: 2/3;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
 .animePoster {
-    border-radius: 0.5rem;
-    height: 232.45px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  height: 232.45px;
+  width: 100%;
+  aspect-ratio: 2/3;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
+  object-fit: cover;
+  object-position: center;
 }
 
 .animeName {
-    display: inline;
-    font-size: 0.9rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    text-transform: capitalize;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: inline;
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-transform: capitalize;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
 .animeName:hover::after {
-    content: attr(data-anime-name);
-    position: absolute;
-    display: block;
-    padding: 0.5rem;
-    background-color: rgb(50, 50, 50);
-    color: whitesmoke;
-    border: 1px solid whitesmoke;
-    border-radius: 0.3rem;
-    max-width: 100%;
-    bottom: 10%;
-    /* margin-bottom: 0.2rem; */
-    font-size: 0.7rem;
-    white-space: break-spaces;
-    text-align: center;
-    z-index: 5;
+  content: attr(data-anime-name);
+  position: absolute;
+  display: block;
+  padding: 0.5rem;
+  background-color: rgb(50, 50, 50);
+  color: whitesmoke;
+  border: 1px solid whitesmoke;
+  border-radius: 0.3rem;
+  max-width: 100%;
+  bottom: 10%;
+  /* margin-bottom: 0.2rem; */
+  font-size: 0.7rem;
+  white-space: break-spaces;
+  text-align: center;
+  z-index: 5;
 }

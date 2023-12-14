@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import styles from "./css/filter.module.css";
 import { fetchFilteredAnime } from "./redux/reducers/filterAnimePage.js";
@@ -86,19 +86,15 @@ function Filter() {
 
   const dispatch = useDispatch();
 
-  const [params, setParams] = useSearchParams({});
-
-  // console.log(params);
-
   let rowItemCount = 5;
 
   const filterLoading = useSelector((state) => state.filterData.isLoading);
   const filtered = useSelector((state) => state.filterData.data);
   let currentPage, lastPage, resultCount;
   if (!filterLoading) {
-    currentPage = filtered?.pagination?.current_page;
-    lastPage = filtered?.pagination?.last_visible_page;
-    resultCount = filtered?.pagination?.items.total;
+    currentPage = filtered?.pagination.current_page;
+    lastPage = filtered?.pagination.last_visible_page;
+    resultCount = filtered?.pagination.items.total;
   }
 
   const filterClickRef = useRef("");
@@ -116,39 +112,6 @@ function Filter() {
     sortBy: "",
     page: "1",
   };
-
-  const filterQueriesEmpty = {
-    genres: [],
-    genreIDs: [],
-    startDate: "",
-    endDate: "",
-    minScore: null,
-    rating: "",
-    status: "",
-    type: "",
-    orderBy: "",
-    sortBy: "",
-    page: "1",
-  };
-
-  const filterQueriesUsing = {};
-
-  function getFilterQueries() {
-    const queryNames = Object.getOwnPropertyNames(filterQueries);
-
-    // let temp = {};
-
-    for (const e of queryNames.entries()) {
-      // console.log(e[1]);
-      if (filterQueries[e[1]] !== filterQueriesEmpty[e[1]]) {
-        // console.log(filterQueries[e[1]]);
-
-        filterQueriesUsing[e[1]] = filterQueries[e[1]];
-      }
-    }
-
-    console.log(filterQueriesUsing);
-  }
 
   function setSelectedOptions(label, value) {
     if (label.includes("Type")) {
@@ -195,22 +158,7 @@ function Filter() {
       filterQueries.genres = value;
     }
 
-    getFilterQueries();
-
-    // const queryNames = Object.getOwnPropertyNames(filterQueries);
-
-    // // let temp = {};
-
-    // for (const e of queryNames.entries()) {
-    //   // console.log(e[1]);
-    //   if (filterQueries[e[1]] !== filterQueriesEmpty[e[1]]) {
-    //     // console.log(filterQueries[e[1]]);
-
-    //     filterQueriesUsing[e[1]] = filterQueries[e[1]];
-    //   }
-    // }
-
-    // console.log(filterQueriesUsing);
+    // console.log(filterQueries);
   }
 
   function handleEventListeners() {
@@ -323,10 +271,7 @@ function Filter() {
 
     filterBtn.addEventListener("click", () => {
       // console.log("Filtered");
-      // setParams(filterQueries);
-      // dispatch(fetchFilteredAnime(filterQueries));
-      setParams(filterQueriesUsing);
-      // dispatch(fetchFilteredAnime(filterQueriesUsing));
+      dispatch(fetchFilteredAnime(filterQueries));
 
       // fetchFilteredAnime(filterQueries);
     });
@@ -389,69 +334,7 @@ function Filter() {
     });
   }
 
-  // function dispatchVal() {
-  // dispatch(fetchFilteredAnime(filterQueriesUsing));
-  // }
-
-  function changePage(page) {
-    console.log(params);
-    setParams({ ...params, page: page });
-  }
-
   useEffect(() => {
-    // for (const e of params.entries()) console.log(e);
-    if (params.size !== 0) {
-      const queryNames = Object.getOwnPropertyNames(filterQueries);
-
-      filterQueriesUsing["page"] = 1;
-
-      for (const e of queryNames.entries()) {
-        // console.log(e[1]);
-        if (
-          params.get(e[1]) !== null &&
-          params.get(e[1]) !== "null" &&
-          params.get(e[1]) !== ""
-        ) {
-          // console.log(filterQueries[e[1]]);
-
-          filterQueriesUsing[e[1]] = params.get(e[1]);
-        }
-      }
-
-      filterQueriesUsing.genres = params.getAll("genres");
-      filterQueriesUsing.genreIDs = params.getAll("genreIDs");
-
-      let genTemp = [];
-      let genIDTemp = [];
-
-      filterQueriesUsing.genres.forEach((x) => genTemp.push(parseInt(x)));
-      filterQueriesUsing.genreIDs.forEach((x) => genIDTemp.push(parseInt(x)));
-
-      filterQueriesUsing.genres = genTemp;
-      filterQueriesUsing.genreIDs = genIDTemp;
-
-      // Setting selected genres with class styles.genreSelected
-
-      const genItems = document.querySelectorAll("[data-genre]");
-      // console.log(genItems);
-
-      genItems.forEach((genItem) => {
-        genItem.classList.remove(styles.genreSelected);
-        genTemp.forEach((x) => {
-          if (x === parseInt(genItem.dataset.genre)) {
-            genItem.classList.add(styles.genreSelected);
-          }
-        });
-      });
-
-      // How to set array of parameters using setParams
-
-      // console.log(filterQueriesUsing);
-
-      dispatch(fetchFilteredAnime(filterQueriesUsing));
-      // dispatchVal();
-    }
-
     function determineRowCount() {
       // > 945 : 5, > 750 : 4, > 555 : 3, > 370 : 2
 
@@ -478,7 +361,7 @@ function Filter() {
     return () => {
       window.removeEventListener("resize", determineRowCount);
     };
-  }, [params]);
+  }, [filtered, filterLoading]);
 
   return (
     <div className={styles.container}>
@@ -762,7 +645,7 @@ function Filter() {
               <div
                 className={styles.genres}
                 id="genres"
-                data-genre={genre.mal_id}
+                data-genre
                 key={genre.mal_id}
               >
                 {genre.name}
@@ -793,21 +676,11 @@ function Filter() {
                   className={styles.animeTile}
                   key={index}
                 >
-                  <div
-                    className={styles.animePosterDiv}
-                    style={{
-                      backgroundImage: `url(${item.images.jpg.small_image_url})`,
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "cover",
-                    }}
-                  >
-                    <img
-                      src={item.images.jpg.large_image_url}
-                      alt={item.title_english}
-                      className={styles.animePoster}
-                    />
-                  </div>
+                  <img
+                    src={item.images.jpg.large_image_url}
+                    alt={item.title_english}
+                    className={styles.animePoster}
+                  />
                   <div
                     className={styles.animeName}
                     data-anime-name={item.titles[0].title}
@@ -832,18 +705,10 @@ function Filter() {
               ""
             ) : (
               <>
-                <div
-                  className={styles.firstBtn}
-                  onClick={() => changePage(1)}
-                  data-page-btn
-                >
+                <div className={styles.firstBtn} data-page-btn>
                   First
                 </div>
-                <div
-                  className={styles.prevBtn}
-                  onClick={() => changePage(currentPage - 1)}
-                  data-page-btn
-                >
+                <div className={styles.prevBtn} data-page-btn>
                   Back
                 </div>
               </>
@@ -854,38 +719,22 @@ function Filter() {
                 ""
               ) : currentPage === 2 ? (
                 <>
-                  <div
-                    className={styles.endpointPages}
-                    onClick={() => changePage(currentPage - 1)}
-                    data-page-btn
-                  >
+                  <div className={styles.endpointPages} data-page-btns>
                     {currentPage - 1}
                   </div>
                 </>
               ) : (
                 <>
-                  <div
-                    className={styles.endpointPages}
-                    onClick={() => changePage(currentPage - 2)}
-                    data-page-btn
-                  >
+                  <div className={styles.endpointPages} data-page-btns>
                     {currentPage - 2}
                   </div>
-                  <div
-                    className={styles.endpointPages}
-                    onClick={() => changePage(currentPage - 1)}
-                    data-page-btn
-                  >
+                  <div className={styles.endpointPages} data-page-btns>
                     {currentPage - 1}
                   </div>
                 </>
               )}
 
-              <div
-                className={styles.currentPage}
-                onClick={() => changePage(currentPage)}
-                data-page-btn
-              >
+              <div className={styles.currentPage} data-page-btns>
                 {currentPage}
               </div>
 
@@ -894,28 +743,16 @@ function Filter() {
                 ""
               ) : lastPage - currentPage === 1 ? (
                 <>
-                  <div
-                    className={styles.endpointPages}
-                    onClick={() => changePage(currentPage + 1)}
-                    data-page-btn
-                  >
+                  <div className={styles.endpointPages} data-page-btns>
                     {currentPage + 1}
                   </div>
                 </>
               ) : (
                 <>
-                  <div
-                    className={styles.endpointPages}
-                    onClick={() => changePage(currentPage + 1)}
-                    data-page-btn
-                  >
+                  <div className={styles.endpointPages} data-page-btns>
                     {currentPage + 1}
                   </div>
-                  <div
-                    className={styles.endpointPages}
-                    onClick={() => changePage(currentPage + 2)}
-                    data-page-btn
-                  >
+                  <div className={styles.endpointPages} data-page-btns>
                     {currentPage + 2}
                   </div>
                 </>
@@ -926,18 +763,10 @@ function Filter() {
               ""
             ) : (
               <>
-                <div
-                  className={styles.nextBtn}
-                  onClick={() => changePage(currentPage + 1)}
-                  data-page-btn
-                >
+                <div className={styles.nextBtn} data-page-btn>
                   Next
                 </div>
-                <div
-                  className={styles.lastBtn}
-                  onClick={() => changePage(lastPage)}
-                  data-page-btn
-                >
+                <div className={styles.lastBtn} data-page-btn>
                   Last
                 </div>
               </>

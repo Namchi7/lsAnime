@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 import styles from "./css/viewAllTiles.module.css";
@@ -9,6 +9,8 @@ function ViewAllTiles() {
   const dispatch = useDispatch();
 
   const [params, setParams] = useSearchParams();
+
+  console.log(params);
 
   document.body.style.backgroundImage = "";
 
@@ -28,6 +30,16 @@ function ViewAllTiles() {
     pageData = allData?.data;
   }
 
+  const firstRef = useRef("");
+  const backRef = useRef("");
+  const currPageM2 = useRef("");
+  const currPageM1 = useRef("");
+  const currPage = useRef("");
+  const currPageP1 = useRef("");
+  const currPageP2 = useRef("");
+  const nextRef = useRef("");
+  const lastRef = useRef("");
+
   let pageInfo = {
     pageName: "",
     pageNo: null,
@@ -45,29 +57,106 @@ function ViewAllTiles() {
     pageInfo.pageName = "Top Animes";
   }
 
-  function pageClick() {
+  function pageClick(refName) {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+    let page;
+    switch (refName) {
+      case "firstRef": {
+        page = firstRef.current?.innerHTML;
+        break;
+      }
+      case "backRef": {
+        page = backRef.current.innerHTML;
+        break;
+      }
+      case "currPageM2": {
+        page = currPageM2.current.innerHTML;
+        break;
+      }
+      case "currPageM1": {
+        page = currPageM1.current.innerHTML;
+        break;
+      }
+      case "currPage": {
+        page = currPage.current.innerHTML;
+        break;
+      }
+      case "currPageP1": {
+        page = currPageP1.current.innerHTML;
+        break;
+      }
+      case "currPageP2": {
+        page = currPageP2.current.innerHTML;
+        break;
+      }
+      case "nextRef": {
+        page = nextRef.current.innerHTML;
+        break;
+      }
+      case "lastRef": {
+        page = lastRef.current.innerHTML;
+        break;
+      }
+    }
+    console.log(page);
+
+    switch (page) {
+      case "Next": {
+        console.log("Go to next page", currentPage + 1);
+        pageInfo.pageNo = currentPage + 1;
+        console.log(pageInfo.pageNo);
+        dispatch(fetchViewAll(pageInfo));
+        break;
+      }
+      case "Back": {
+        console.log("Go to previous page", currentPage - 1);
+        if (currentPage !== 1) {
+          pageInfo.pageNo = currentPage - 1;
+          console.log(pageInfo.pageNo);
+          dispatch(fetchViewAll(pageInfo));
+        }
+        break;
+      }
+      case "First": {
+        console.log("Go to first page", 1);
+        if (currentPage !== 1) {
+          pageInfo.pageNo = 1;
+          console.log(pageInfo.pageNo);
+          dispatch(fetchViewAll(pageInfo));
+        }
+        break;
+      }
+      case "Last": {
+        console.log("Go to last page", lastPage);
+        if (currentPage !== lastPage) {
+          pageInfo.pageNo = lastPage;
+          console.log(pageInfo.pageNo);
+          dispatch(fetchViewAll(pageInfo));
+        }
+        break;
+      }
+      default: {
+        pageInfo.pageNo = parseInt(page);
+        console.log(pageInfo.pageNo);
+        dispatch(fetchViewAll(pageInfo));
+        break;
+      }
+    }
   }
 
   useEffect(() => {
-    console.log(params.get("page"));
     if (path === "/this-season") {
       pageInfo.pageName = "This Season";
-      pageInfo.pageNo = params.get("page");
-
       dispatch(fetchViewAll(pageInfo));
     }
     if (path === "/upcoming-season") {
       pageInfo.pageName = "Upcoming Season";
-      pageInfo.pageNo = params.get("page");
-
       dispatch(fetchViewAll(pageInfo));
     }
     if (path === "/top") {
       pageInfo.pageName = "Top Animes";
-      pageInfo.pageNo = params.get("page");
-
       dispatch(fetchViewAll(pageInfo));
     }
 
@@ -95,7 +184,7 @@ function ViewAllTiles() {
     return () => {
       window.removeEventListener("resize", determineRowCount);
     };
-  }, [params]);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -109,21 +198,11 @@ function ViewAllTiles() {
                 className={styles.animeTile}
                 key={index}
               >
-                <div
-                  className={styles.animePosterDiv}
-                  style={{
-                    backgroundImage: `url(${item.images.jpg.small_image_url})`,
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                  }}
-                >
-                  <img
-                    src={item.images.jpg.large_image_url}
-                    alt={item.title_english}
-                    className={styles.animePoster}
-                  />
-                </div>
+                <img
+                  src={item.images.jpg.large_image_url}
+                  alt={item.title_english}
+                  className={styles.animePoster}
+                />
                 <div
                   className={styles.animeName}
                   data-anime-name={item.titles[0].title}
@@ -143,29 +222,28 @@ function ViewAllTiles() {
               )
             )}
           </div>
-
           {currentPage && (
             <div className={styles.pageBtns}>
               {currentPage === 1 ? (
                 ""
               ) : (
                 <>
-                  <Link
-                    to={`${path}?page=1`}
+                  <div
                     className={styles.firstBtn}
-                    onClick={() => pageClick()}
+                    ref={firstRef}
+                    onClick={() => pageClick("firstRef")}
                     data-page-btns
                   >
                     First
-                  </Link>
-                  <Link
-                    to={`${path}?page=${currentPage - 1}`}
+                  </div>
+                  <div
                     className={styles.prevBtn}
-                    onClick={() => pageClick()}
+                    ref={backRef}
+                    onClick={() => pageClick("backRef")}
                     data-page-btns
                   >
                     Back
-                  </Link>
+                  </div>
                 </>
               )}
 
@@ -174,77 +252,77 @@ function ViewAllTiles() {
                   ""
                 ) : currentPage === 2 ? (
                   <>
-                    <Link
-                      to={`${path}?page=${currentPage - 1}`}
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      ref={currPageM1}
+                      onClick={() => pageClick("currPageM1")}
                       data-page-btns
                     >
                       {currentPage - 1}
-                    </Link>
+                    </div>
                   </>
                 ) : (
                   <>
-                    <Link
-                      to={`${path}?page=${currentPage - 2}`}
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      ref={currPageM2}
+                      onClick={() => pageClick("currPageM2")}
                       data-page-btns
                     >
                       {currentPage - 2}
-                    </Link>
-                    <Link
-                      to={`${path}?page=${currentPage - 1}`}
+                    </div>
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      ref={currPageM1}
+                      onClick={() => pageClick("currPageM1")}
                       data-page-btns
                     >
                       {currentPage - 1}
-                    </Link>
+                    </div>
                   </>
                 )}
 
-                <Link
-                  to={`${path}?page=${currentPage}`}
+                <div
                   className={styles.currentPage}
-                  onClick={() => pageClick()}
+                  ref={currPage}
+                  onClick={() => pageClick("currPage")}
                   data-page-btns
                 >
                   {currentPage}
-                </Link>
+                </div>
 
                 {(currentPage > 2 && lastPage - currentPage === 0) ||
                 (currentPage === 1 && lastPage === 1) ? (
                   ""
                 ) : lastPage - currentPage === 1 ? (
                   <>
-                    <Link
-                      to={`${path}?page=${currentPage + 1}`}
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      ref={currPageP1}
+                      onClick={() => pageClick("currPageP1")}
                       data-page-btns
                     >
                       {currentPage + 1}
-                    </Link>
+                    </div>
                   </>
                 ) : (
                   <>
-                    <Link
-                      to={`${path}?page=${currentPage + 1}`}
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      ref={currPageP1}
+                      onClick={() => pageClick("currPageP1")}
                       data-page-btns
                     >
                       {currentPage + 1}
-                    </Link>
-                    <Link
-                      to={`${path}?page=${currentPage + 2}`}
+                    </div>
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      ref={currPageP2}
+                      onClick={() => pageClick("currPageP2")}
                       data-page-btns
                     >
                       {currentPage + 2}
-                    </Link>
+                    </div>
                   </>
                 )}
               </div>
@@ -253,29 +331,29 @@ function ViewAllTiles() {
                 ""
               ) : (
                 <>
-                  <Link
-                    to={`${path}?page=${currentPage + 1}`}
+                  <div
                     className={styles.nextBtn}
-                    onClick={() => pageClick()}
+                    ref={nextRef}
+                    onClick={() => pageClick("nextRef")}
                     data-page-btns
                   >
                     Next
-                  </Link>
-                  <Link
-                    to={`${path}?page=${lastPage}`}
+                  </div>
+                  <div
                     className={styles.lastBtn}
-                    onClick={() => pageClick()}
+                    ref={lastRef}
+                    onClick={() => pageClick("lastRef")}
                     data-page-btns
                   >
                     Last
-                  </Link>
+                  </div>
                 </>
               )}
             </div>
           )}
         </>
       ) : (
-        "Loading..."
+        "Loading"
       )}
     </div>
   );

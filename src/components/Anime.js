@@ -100,7 +100,9 @@ function Anime() {
                 onClick={(e) => handleSynopsis()}
                 data-synopsis
               >
-                {data.synopsis}
+                {data.synopsis === null
+                  ? "Synopsis not available."
+                  : data.synopsis}
               </div>
             </div>
           </div>
@@ -182,11 +184,13 @@ function Anime() {
               <div className={styles.topics}>Genre: </div>
               <div className={styles.genreList}>
                 {" "}
-                {data.genres.map((item, index) => (
-                  <div className={styles.genre} key={index}>
-                    {item.name}
-                  </div>
-                ))}
+                {data.genres.length === 0
+                  ? "?"
+                  : data.genres.map((item, index) => (
+                      <div className={styles.genre} key={index}>
+                        {item.name}
+                      </div>
+                    ))}
               </div>
             </div>
 
@@ -194,11 +198,13 @@ function Anime() {
               <div className={styles.topics}>Themes: </div>
               <div className={styles.genreList}>
                 {" "}
-                {data.themes.map((item, index) => (
-                  <div className={styles.genre} key={index}>
-                    {item.name}
-                  </div>
-                ))}
+                {data.themes.length === 0
+                  ? "?"
+                  : data.themes.map((item, index) => (
+                      <div className={styles.genre} key={index}>
+                        {item.name}
+                      </div>
+                    ))}
               </div>
             </div>
 
@@ -238,7 +244,9 @@ function Anime() {
             <div className={styles.otherRows}>
               <div className={styles.topics}>Studios: </div>
               <div className={styles.studios}>
-                <span key="0">{data.studios[0].name}</span>
+                <span key="0">
+                  {data.studios === null ? data?.studios[0]?.name : "?"}
+                </span>
                 {data.studios.map((item, index) =>
                   index > 0 ? <span key={index}>, {item.name}</span> : ""
                 )}

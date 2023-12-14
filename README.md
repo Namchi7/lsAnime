@@ -1,3 +1,3 @@
 #lsAnime
 
-visit https://lsanime.netlify.com to view live project.
+visit https://lsanime.netlify.app to view live project.

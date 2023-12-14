@@ -1,192 +1,198 @@
 .container {
-    width: 95%;
-    max-width: 65rem;
-    min-height: calc(100vh - 12rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  width: 95%;
+  max-width: 65rem;
+  /* min-height: calc(100vh - 12rem); */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .headingText {
-    width: 100%;
-    font-size: 1.5rem;
-    font-weight: 600;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .pairTiles {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .pairs {
-    position: relative;
-    width: calc(50% - 0.5rem);
-    /* min-width: 50%; */
-    flex-shrink: 1;
-    padding: 0.5rem 0;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
+  position: relative;
+  width: calc(50% - 0.5rem);
+  /* min-width: 50%; */
+  flex-shrink: 1;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
 }
 
-.animeData {    
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-self: flex-start;
-    gap: 0.5rem;
+.animeData {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-self: flex-start;
+  gap: 0.5rem;
 }
 
 .animeTile {
-    position: relative;
-    width: calc(50% - 0.25rem);
-    min-width: 50%;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
+  position: relative;
+  width: calc(50% - 0.25rem);
+  min-width: 50%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
 
 .pairHead {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .animePoster {
-    height: 10rem;
-    border-radius: 0.2rem;
+  height: 10rem;
+  border-radius: 0.2rem;
 }
 
 .animeName {
-    /* position: relative; */
-    width: 70%;
-    font-weight: 600;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: center;
+  /* position: relative; */
+  width: 70%;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;
 }
 
 .animeName:hover::after {
-    content: attr(data-anime-title);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    max-width: 100%;
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    white-space: break-spaces;
-    color: white;
-    background-color: black;
-    border: 1px solid white;
-    border-radius: 0.5rem;
-    z-index: 5;
+  content: attr(data-anime-title);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  max-width: 100%;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  white-space: break-spaces;
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  z-index: 5;
 }
 
 .content {
-    /* flex-grow: 1; */
-    user-select: none;
-    /* position: relative; */
-    height: 2.7rem;
-    width: 100%;
-    padding: 0.5rem;
-    padding-bottom: 0;
-    font-size: 0.8rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    text-overflow: ellipsis;
-    overflow: hidden;
+  /* flex-grow: 1; */
+  user-select: none;
+  /* position: relative; */
+  height: 2.7rem;
+  width: 100%;
+  padding: 0.5rem;
+  padding-bottom: 0;
+  font-size: 0.8rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .content:hover::after {
-    content: attr(data-content);
-    position: absolute;
-    width: 90%;
-    top: 98%;
-    left: 0.5rem;
-    padding: 0.3rem;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
-    z-index: 5;
+  content: attr(data-content);
+  position: absolute;
+  width: 90%;
+  top: 98%;
+  left: 0.5rem;
+  padding: 0.3rem;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  z-index: 5;
 }
 
 .pageBtns {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.prevBtn, .nextBtn, .firstBtn, .lastBtn {
-    border: 1px solid black;
-    border-radius: 0.2rem;
-    padding: 0.5rem;
-    font-size: 0.8em;
+.prevBtn,
+.nextBtn,
+.firstBtn,
+.lastBtn {
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  font-size: 0.8em;
 }
 
-.prevBtn:hover, .nextBtn:hover, .firstBtn:hover, .lastBtn:hover {
-    cursor: pointer;
-    background-color: rgba(202, 233, 98, 0.25);
-    color: #ff5700;
-    border-color: #ff5700;
+.prevBtn:hover,
+.nextBtn:hover,
+.firstBtn:hover,
+.lastBtn:hover {
+  cursor: pointer;
+  background-color: rgba(202, 233, 98, 0.25);
+  color: #ff5700;
+  border-color: #ff5700;
 }
 
 .firstBtn {
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .lastBtn {
-    margin-left: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .pageNos {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .pageNos > * {
-    border: 1px solid black;
-    border-radius: 0.2rem;
-    padding: 0.5rem;
-    font-size: 0.8rem;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .pageNos > *:hover {
-    cursor: pointer;
-    /* background-color: rgba(216, 216, 216, 0.5); */
-    background-color: rgba(202, 233, 98, 0.25);
-    color: #ff5700;
-    border-color: #ff5700;
+  cursor: pointer;
+  /* background-color: rgba(216, 216, 216, 0.5); */
+  background-color: rgba(202, 233, 98, 0.25);
+  color: #ff5700;
+  border-color: #ff5700;
 }
 
 .currentPage {
-    background-color: rgba(202, 233, 98, 0.25);
-    color: #ff5700;
-    border-color: #ff5700;
+  background-color: rgba(202, 233, 98, 0.25);
+  color: #ff5700;
+  border-color: #ff5700;
 }
 
 @media screen and (max-width: 700px) {
-    .pairs {
-        width: 100%;
-    }
+  .pairs {
+    width: 100%;
+  }
 }

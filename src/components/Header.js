@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
-
 import styles from "./css/header.module.css";
+
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import mainLogo from "../assets/images/mainlogo.svg";
 import searchIcon from "../assets/images/search.svg";
 import filterIcon from "../assets/images/filter.svg";
 import moonIcon from "../assets/images/moon.svg";
 import sunIcon from "../assets/images/sun.svg";
-import { useEffect } from "react";
 
 function allEventListeners() {
   const toggleBG = document.querySelector("[data-theme-toggle]");
@@ -33,6 +34,8 @@ function Header() {
   const handleClick = () => {
     allEventListeners();
   };
+
+  // Dark Theme detector: https://medium.com/hypersphere-codes/detecting-system-theme-in-javascript-css-react-f6b961916d48
 
   useEffect(() => {}, []);
 

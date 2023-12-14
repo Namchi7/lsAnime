@@ -15,11 +15,6 @@ body {
   position: relative;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 input {
   outline: transparent;
   border: transparent;
@@ -35,3 +30,17 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* @media (prefers-color-scheme: light) {
+  body {
+    color: black;
+    background-color: white;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: whitesmoke;
+    background-color: #222;
+  }
+} */
