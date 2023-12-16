@@ -134,7 +134,7 @@ function Recommendations() {
     <div className={styles.container}>
       <div className={styles.headingText}>Anime Recommendations</div>
       <div className={styles.pairTiles}>
-        {!loading &&
+        {!loading ? (
           pairs?.map((pair, index) => (
             <div className={styles.pairs} key={index}>
               <div className={styles.animeData}>
@@ -173,7 +173,10 @@ function Recommendations() {
                 {pair.content}
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div style={{ width: "100%", textAlign: "center" }}>Loading...</div>
+        )}
         {/* <div className={styles.pairs}>
           <div className={styles.animeData}>
             <div className={styles.animeTile}>
@@ -318,7 +321,7 @@ function Recommendations() {
                 {currentPage}
               </div>
 
-              {(currentPage > 2 && lastPage - currentPage === 0) ||
+              {(currentPage >= 2 && lastPage - currentPage === 0) ||
               (currentPage === 1 && lastPage === 1) ? (
                 ""
               ) : lastPage - currentPage === 1 ? (

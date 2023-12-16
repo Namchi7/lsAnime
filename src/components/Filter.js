@@ -26,7 +26,7 @@ const filterOptions = {
     },
     {
       enum: "r17",
-      name: "R - 17+ (violence and profanity)",
+      name: "R - 17+ (Violence And Profanity)",
     },
     {
       enum: "r",
@@ -141,12 +141,12 @@ function Filter() {
     for (const e of queryNames.entries()) {
       // console.log(e[1]);
       if (filterQueries[e[1]] !== filterQueriesEmpty[e[1]]) {
-        // console.log(filterQueries[e[1]]);
-
         filterQueriesUsing[e[1]] = filterQueries[e[1]];
       }
+      if (filterQueriesUsing[e[1]] === "any") delete filterQueriesUsing[e[1]];
     }
 
+    delete filterQueriesUsing.genreIDs;
     console.log(filterQueriesUsing);
   }
 
@@ -194,23 +194,11 @@ function Filter() {
     if (label.includes("Genres")) {
       filterQueries.genres = value;
     }
+    if (label.includes("GenreIDs")) {
+      filterQueries.genreIDs = value;
+    }
 
     getFilterQueries();
-
-    // const queryNames = Object.getOwnPropertyNames(filterQueries);
-
-    // // let temp = {};
-
-    // for (const e of queryNames.entries()) {
-    //   // console.log(e[1]);
-    //   if (filterQueries[e[1]] !== filterQueriesEmpty[e[1]]) {
-    //     // console.log(filterQueries[e[1]]);
-
-    //     filterQueriesUsing[e[1]] = filterQueries[e[1]];
-    //   }
-    // }
-
-    // console.log(filterQueriesUsing);
   }
 
   function handleEventListeners() {
@@ -286,7 +274,7 @@ function Filter() {
         const label =
           input.parentElement.parentElement.parentElement.children[0].innerHTML;
         // console.log(label);
-        const value = option.innerHTML === "Any" ? "" : option.innerHTML;
+        const value = option.innerHTML === "Any" ? "any" : option.innerHTML;
         setSelectedOptions(label, value);
       });
     });
@@ -304,17 +292,19 @@ function Filter() {
           (item) => item.name === genre.innerHTML
         )[0].mal_id;
 
+        // if (!selected.includes(genre.innerHTML)) {
         if (!selected.includes(genre.innerHTML)) {
           selected.push(genre.innerHTML);
           selectedIDs.push(genreID);
           genre.classList.add(styles.genreSelected);
         } else {
-          selected.pop(genre.innerHTML);
-          selectedIDs.pop(genreID);
+          selected.splice(selected.indexOf(genre.innerHTML), 1);
+          selectedIDs.splice(selectedIDs.indexOf(genreID), 1);
           genre.classList.remove(styles.genreSelected);
         }
 
-        setSelectedOptions("Genres", selectedIDs);
+        setSelectedOptions("Genres", selected);
+        setSelectedOptions("GenreIDs", selectedIDs);
       });
     });
 
@@ -322,88 +312,77 @@ function Filter() {
     const filterBtn = document.querySelector("[data-filter-btn]");
 
     filterBtn.addEventListener("click", () => {
-      // console.log("Filtered");
-      // setParams(filterQueries);
-      // dispatch(fetchFilteredAnime(filterQueries));
-      setParams(filterQueriesUsing);
-      // dispatch(fetchFilteredAnime(filterQueriesUsing));
+      filterQueriesUsing.page = 1;
+      // console.log(filterQueries);
 
-      // fetchFilteredAnime(filterQueries);
+      setParams(filterQueriesUsing);
     });
 
-    if (!filterLoading && filtered.data)
-      document.querySelector("[data-result-count]").innerHTML = resultCount;
+    // if (!filterLoading && filtered.data)
+    //   document.querySelector("[data-result-count]").innerHTML = resultCount;
 
     // Filter pagination btn click event
     const pageBtns = document.querySelectorAll("[data-page-btn]");
 
-    pageBtns.forEach((pageBtn) => {
-      pageBtn.addEventListener("click", () => {
-        const page = pageBtn.innerHTML;
+    // pageBtns.forEach((pageBtn) => {
+    //   pageBtn.addEventListener("click", () => {
+    //     const page = pageBtn.innerHTML;
 
-        switch (page) {
-          case "Next": {
-            console.log("Go to next page", currentPage + 1);
-            console.log(filterQueries.page);
-            filterQueries.page = currentPage + 1;
-            console.log(filterQueries.page);
-            dispatch(fetchFilteredAnime(filterQueries));
-            break;
-          }
-          case "Back": {
-            console.log("Go to previous page", currentPage - 1);
-            if (currentPage !== 1) {
-              filterQueries.page = currentPage - 1;
-              console.log(filterQueries.page);
-              dispatch(fetchFilteredAnime(filterQueries));
-            }
-            break;
-          }
-          case "First": {
-            console.log("Go to first page", 1);
-            if (currentPage !== 1) {
-              filterQueries.page = 1;
-              console.log(filterQueries.page);
-              dispatch(fetchFilteredAnime(filterQueries));
-            }
-            break;
-          }
-          case "Last": {
-            console.log("Go to last page", lastPage);
-            if (currentPage !== lastPage) {
-              filterQueries.page = lastPage;
-              console.log(filterQueries.page);
-              dispatch(fetchFilteredAnime(filterQueries));
-            }
-            break;
-          }
-          default: {
-            // console.log(parseInt(page), filtered.pagination.current_page);
-            filterQueries.page = parseInt(page);
-            console.log(filterQueries.page);
-            dispatch(fetchFilteredAnime(filterQueries));
-            break;
-          }
-        }
-      });
-    });
+    //     switch (page) {
+    //       case "Next": {
+    //         console.log("Go to next page", currentPage + 1);
+    //         console.log(filterQueries.page);
+    //         filterQueries.page = currentPage + 1;
+    //         console.log(filterQueries.page);
+    //         dispatch(fetchFilteredAnime(filterQueries));
+    //         break;
+    //       }
+    //       case "Back": {
+    //         console.log("Go to previous page", currentPage - 1);
+    //         if (currentPage !== 1) {
+    //           filterQueries.page = currentPage - 1;
+    //           console.log(filterQueries.page);
+    //           dispatch(fetchFilteredAnime(filterQueries));
+    //         }
+    //         break;
+    //       }
+    //       case "First": {
+    //         console.log("Go to first page", 1);
+    //         if (currentPage !== 1) {
+    //           filterQueries.page = 1;
+    //           console.log(filterQueries.page);
+    //           dispatch(fetchFilteredAnime(filterQueries));
+    //         }
+    //         break;
+    //       }
+    //       case "Last": {
+    //         console.log("Go to last page", lastPage);
+    //         if (currentPage !== lastPage) {
+    //           filterQueries.page = lastPage;
+    //           console.log(filterQueries.page);
+    //           dispatch(fetchFilteredAnime(filterQueries));
+    //         }
+    //         break;
+    //       }
+    //       default: {
+    //         // console.log(parseInt(page), filtered.pagination.current_page);
+    //         filterQueries.page = parseInt(page);
+    //         console.log(filterQueries.page);
+    //         dispatch(fetchFilteredAnime(filterQueries));
+    //         break;
+    //       }
+    //     }
+    //   });
+    // });
   }
-
-  // function dispatchVal() {
-  // dispatch(fetchFilteredAnime(filterQueriesUsing));
-  // }
 
   function changePage(page) {
-    console.log(params);
-    setParams({ ...params, page: page });
-  }
-
-  useEffect(() => {
-    // for (const e of params.entries()) console.log(e);
+    // setParams({ ...params, page: page });
     if (params.size !== 0) {
-      const queryNames = Object.getOwnPropertyNames(filterQueries);
+      const queryNames = Object.getOwnPropertyNames(filterQueriesEmpty);
 
       filterQueriesUsing["page"] = 1;
+      filterQueries["page"] = 1;
 
       for (const e of queryNames.entries()) {
         // console.log(e[1]);
@@ -413,43 +392,102 @@ function Filter() {
           params.get(e[1]) !== ""
         ) {
           // console.log(filterQueries[e[1]]);
-
           filterQueriesUsing[e[1]] = params.get(e[1]);
+          filterQueries[e[1]] = params.get(e[1]);
+        }
+
+        delete filterQueriesUsing.genreIDs;
+      }
+
+      const gen = params.getAll("genres");
+
+      let genIDs = [];
+
+      for (let i = 0; i < gen.length; i++) {
+        // console.log(gen[i] == Genres.data[0].name);
+        Genres.data.forEach((item) => {
+          if (gen[i] == item.name) {
+            // console.log(item.mal_id, item.name);
+            genIDs.push(item.mal_id);
+          }
+        });
+      }
+      filterQueriesUsing.genres = gen;
+      filterQueries.genres = gen;
+      filterQueries.genreIDs = genIDs;
+    }
+    filterQueriesUsing["page"] = page;
+    filterQueries["page"] = page;
+
+    setParams(filterQueriesUsing);
+
+    // console.log(filterQueries, filterQueriesUsing);
+  }
+
+  useEffect(() => {
+    if (params.size !== 0) {
+      const queryNames = Object.getOwnPropertyNames(filterQueries);
+
+      filterQueriesUsing["page"] = 1;
+      filterQueries["page"] = 1;
+
+      for (const e of queryNames.entries()) {
+        // console.log(e[1]);
+        if (
+          params.get(e[1]) !== null &&
+          params.get(e[1]) !== "null" &&
+          params.get(e[1]) !== ""
+        ) {
+          if (e[1] != "genreIDs") filterQueriesUsing[e[1]] = params.get(e[1]);
+          filterQueries[e[1]] = params.get(e[1]);
         }
       }
 
-      filterQueriesUsing.genres = params.getAll("genres");
-      filterQueriesUsing.genreIDs = params.getAll("genreIDs");
+      const gen = params.getAll("genres");
 
-      let genTemp = [];
-      let genIDTemp = [];
+      let genIDs = [];
 
-      filterQueriesUsing.genres.forEach((x) => genTemp.push(parseInt(x)));
-      filterQueriesUsing.genreIDs.forEach((x) => genIDTemp.push(parseInt(x)));
+      for (let i = 0; i < gen.length; i++) {
+        Genres.data.forEach((item) => {
+          if (gen[i] == item.name) {
+            genIDs.push(item.mal_id);
+          }
+        });
+      }
 
-      filterQueriesUsing.genres = genTemp;
-      filterQueriesUsing.genreIDs = genIDTemp;
-
-      // Setting selected genres with class styles.genreSelected
+      filterQueriesUsing.genres = gen;
+      filterQueries.genres = gen;
+      filterQueries.genreIDs = genIDs;
 
       const genItems = document.querySelectorAll("[data-genre]");
       // console.log(genItems);
 
       genItems.forEach((genItem) => {
         genItem.classList.remove(styles.genreSelected);
-        genTemp.forEach((x) => {
-          if (x === parseInt(genItem.dataset.genre)) {
+        // genTemp.forEach((x) => {
+        genIDs.forEach((x) => {
+          if (parseInt(x) === parseInt(genItem.dataset.genre)) {
+            // if (x === genItem.dataset.genre) {
             genItem.classList.add(styles.genreSelected);
           }
         });
       });
 
-      // How to set array of parameters using setParams
+      const queryNamesUsing = Object.getOwnPropertyNames(filterQueriesUsing);
 
-      // console.log(filterQueriesUsing);
+      for (const e of queryNamesUsing.entries()) {
+        if (e[1] === "" && e[1] === null) continue;
 
-      dispatch(fetchFilteredAnime(filterQueriesUsing));
-      // dispatchVal();
+        const filterLabels = document.querySelectorAll("[data-filter-label]");
+        filterLabels.forEach((filterLabel) => {
+          if (filterLabel.dataset.filterLabel === e[1]) {
+            filterLabel.parentElement.children[1].children[0].children[0].innerHTML =
+              filterQueriesUsing[e[1]];
+          }
+        });
+      }
+
+      dispatch(fetchFilteredAnime(filterQueries));
     }
 
     function determineRowCount() {
@@ -486,7 +524,9 @@ function Filter() {
       <div className={styles.allFilterContainer}>
         <div className={styles.filterRow}>
           <div className={styles.filter}>
-            <div className={styles.filterLabel}>Type:</div>
+            <div className={styles.filterLabel} data-filter-label="type">
+              Type:
+            </div>
             <div className={styles.filterSelect}>
               <div className={styles.inputDiv} data-input-div>
                 <div className={styles.filterInput}>Any</div>
@@ -755,6 +795,7 @@ function Filter() {
             </div>
           </div>
         </div>
+
         <div className={styles.filterGenre}>
           <div className={styles.genreHeader}>Genre:</div>
           <div className={styles.genreList}>
@@ -775,17 +816,18 @@ function Filter() {
         </div>
       </div>
 
-      {!filterLoading && filtered.data && (
+      {!filterLoading && filtered.data && params.size !== 0 && (
         <div className={styles.filterResults}>
           <div className={styles.resultTitle}>
             Results:{" "}
             <span className={styles.resultCount} data-result-count>
-              ?
+              {resultCount}
             </span>
           </div>
 
           <div className={styles.allAnimeTiles}>
-            {!filterLoading &&
+            {resultCount === 0 ? "No Results Found" : ""}
+            {!filterLoading ? (
               filtered.data &&
               filtered.data.map((item, index) => (
                 <Link
@@ -815,7 +857,10 @@ function Filter() {
                     {item.titles[0].title}
                   </div>
                 </Link>
-              ))}
+              ))
+            ) : (
+              <div>Loading...</div>
+            )}
             {Array.from(
               {
                 length:
@@ -889,7 +934,7 @@ function Filter() {
                 {currentPage}
               </div>
 
-              {(currentPage > 2 && lastPage - currentPage === 0) ||
+              {(currentPage >= 2 && lastPage - currentPage === 0) ||
               (currentPage === 1 && lastPage === 1) ? (
                 ""
               ) : lastPage - currentPage === 1 ? (

@@ -51,7 +51,7 @@ function ViewAllTiles() {
   }
 
   useEffect(() => {
-    console.log(params.get("page"));
+    // console.log(params.get("page"));
     if (path === "/this-season") {
       pageInfo.pageName = "This Season";
       pageInfo.pageNo = params.get("page");
@@ -213,7 +213,7 @@ function ViewAllTiles() {
                   {currentPage}
                 </Link>
 
-                {(currentPage > 2 && lastPage - currentPage === 0) ||
+                {(currentPage >= 2 && lastPage - currentPage === 0) ||
                 (currentPage === 1 && lastPage === 1) ? (
                   ""
                 ) : lastPage - currentPage === 1 ? (
@@ -275,7 +275,7 @@ function ViewAllTiles() {
           )}
         </>
       ) : (
-        "Loading..."
+        <div>Loading...</div>
       )}
     </div>
   );

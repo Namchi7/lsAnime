@@ -22,6 +22,7 @@ function Search() {
   if (!searchLoading) {
     currentPage = searchData?.pagination?.current_page;
     lastPage = searchData?.pagination?.last_visible_page;
+    console.log(lastPage);
     pageData = searchData?.data;
   }
 
@@ -218,7 +219,7 @@ function Search() {
                   {currentPage}
                 </div>
 
-                {(currentPage > 2 && lastPage - currentPage === 0) ||
+                {(currentPage >= 2 && lastPage - currentPage === 0) ||
                 (currentPage === 1 && lastPage === 1) ? (
                   ""
                 ) : lastPage - currentPage === 1 ? (

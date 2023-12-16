@@ -3,7 +3,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchFilteredAnime = createAsyncThunk(
   "fetchFilteredAnime",
   async (filters) => {
-    console.log(filters);
     let filterString = "";
 
     if (filters.startDate !== "" && filters.startDate !== undefined) {
@@ -34,7 +33,7 @@ export const fetchFilteredAnime = createAsyncThunk(
     // console.log(filterString);
 
     const filterData = await fetch(
-      `https://api.jikan.moe/v4/anime?page=${filters.page}&genres=${filters.genres}${filterString}`
+      `https://api.jikan.moe/v4/anime?page=${filters.page}&genres=${filters.genreIDs}${filterString}`
     ).then((response) => response.json());
 
     // console.log(filterData);

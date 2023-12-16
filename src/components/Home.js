@@ -38,7 +38,7 @@ function Home() {
 
         <div className={styles.previewTiles}>
           {!loading ? (
-            thisSeason.map(
+            thisSeason?.map(
               (item, index) =>
                 index < 5 && (
                   <Link
@@ -71,7 +71,7 @@ function Home() {
                 )
             )
           ) : (
-            <div>Loading</div>
+            <div>Loading...</div>
           )}
         </div>
       </div>
@@ -86,7 +86,7 @@ function Home() {
 
         <div className={styles.previewTiles}>
           {!loading ? (
-            upcomingSeason.map(
+            upcomingSeason?.map(
               (item, index) =>
                 index < 5 && (
                   <Link
@@ -119,7 +119,7 @@ function Home() {
                 )
             )
           ) : (
-            <div>Loading</div>
+            <div>Loading...</div>
           )}
         </div>
       </div>
@@ -134,7 +134,7 @@ function Home() {
 
         <div className={styles.previewTiles}>
           {!loading ? (
-            top.map(
+            top?.map(
               (item, index) =>
                 index < 5 && (
                   <Link
@@ -167,7 +167,7 @@ function Home() {
                 )
             )
           ) : (
-            <div>Loading</div>
+            <div>Loading...</div>
           )}
         </div>
       </div>
