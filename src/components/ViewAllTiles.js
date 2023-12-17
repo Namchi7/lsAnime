@@ -45,9 +45,11 @@ function ViewAllTiles() {
     pageInfo.pageName = "Top Animes";
   }
 
-  function pageClick() {
+  function pageClick(page) {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+    setParams({ page: page });
   }
 
   useEffect(() => {
@@ -150,22 +152,20 @@ function ViewAllTiles() {
                 ""
               ) : (
                 <>
-                  <Link
-                    to={`${path}?page=1`}
+                  <div
                     className={styles.firstBtn}
-                    onClick={() => pageClick()}
+                    onClick={() => pageClick(1)}
                     data-page-btns
                   >
                     First
-                  </Link>
-                  <Link
-                    to={`${path}?page=${currentPage - 1}`}
+                  </div>
+                  <div
                     className={styles.prevBtn}
-                    onClick={() => pageClick()}
+                    onClick={() => pageClick(currentPage - 1)}
                     data-page-btns
                   >
                     Back
-                  </Link>
+                  </div>
                 </>
               )}
 
@@ -174,77 +174,66 @@ function ViewAllTiles() {
                   ""
                 ) : currentPage === 2 ? (
                   <>
-                    <Link
-                      to={`${path}?page=${currentPage - 1}`}
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      onClick={() => pageClick(currentPage - 1)}
                       data-page-btns
                     >
                       {currentPage - 1}
-                    </Link>
+                    </div>
                   </>
                 ) : (
                   <>
-                    <Link
-                      to={`${path}?page=${currentPage - 2}`}
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      onClick={() => pageClick(currentPage - 2)}
                       data-page-btns
                     >
                       {currentPage - 2}
-                    </Link>
-                    <Link
-                      to={`${path}?page=${currentPage - 1}`}
+                    </div>
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      onClick={() => pageClick(currentPage - 1)}
                       data-page-btns
                     >
                       {currentPage - 1}
-                    </Link>
+                    </div>
                   </>
                 )}
 
-                <Link
-                  to={`${path}?page=${currentPage}`}
-                  className={styles.currentPage}
-                  onClick={() => pageClick()}
-                  data-page-btns
-                >
+                <div className={styles.currentPage} data-page-btns>
                   {currentPage}
-                </Link>
+                </div>
 
                 {(currentPage >= 2 && lastPage - currentPage === 0) ||
                 (currentPage === 1 && lastPage === 1) ? (
                   ""
                 ) : lastPage - currentPage === 1 ? (
                   <>
-                    <Link
-                      to={`${path}?page=${currentPage + 1}`}
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      onClick={() => pageClick(currentPage + 1)}
                       data-page-btns
                     >
                       {currentPage + 1}
-                    </Link>
+                    </div>
                   </>
                 ) : (
                   <>
-                    <Link
-                      to={`${path}?page=${currentPage + 1}`}
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      onClick={() => pageClick(currentPage + 1)}
                       data-page-btns
                     >
                       {currentPage + 1}
-                    </Link>
-                    <Link
-                      to={`${path}?page=${currentPage + 2}`}
+                    </div>
+                    <div
                       className={styles.endpointPages}
-                      onClick={() => pageClick()}
+                      onClick={() => pageClick(currentPage + 2)}
                       data-page-btns
                     >
                       {currentPage + 2}
-                    </Link>
+                    </div>
                   </>
                 )}
               </div>
@@ -253,22 +242,20 @@ function ViewAllTiles() {
                 ""
               ) : (
                 <>
-                  <Link
-                    to={`${path}?page=${currentPage + 1}`}
+                  <div
                     className={styles.nextBtn}
-                    onClick={() => pageClick()}
+                    onClick={() => pageClick(currentPage + 1)}
                     data-page-btns
                   >
                     Next
-                  </Link>
-                  <Link
-                    to={`${path}?page=${lastPage}`}
+                  </div>
+                  <div
                     className={styles.lastBtn}
-                    onClick={() => pageClick()}
+                    onClick={() => pageClick(lastPage)}
                     data-page-btns
                   >
                     Last
-                  </Link>
+                  </div>
                 </>
               )}
             </div>

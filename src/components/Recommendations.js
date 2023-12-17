@@ -27,106 +27,7 @@ function Recommendations() {
     lastPage = pagination?.last_visible_page;
   }
 
-  // console.log(loading, pairs);
-
-  // const firstRef = useRef("");
-  // const backRef = useRef("");
-  // const currPageM2 = useRef("");
-  // const currPageM1 = useRef("");
-  // const currPage = useRef("");
-  // const currPageP1 = useRef("");
-  // const currPageP2 = useRef("");
-  // const nextRef = useRef("");
-  // const lastRef = useRef("");
-
-  // function pageClick(refName) {
-  //   let page;
-  //   switch (refName) {
-  //     case "firstRef": {
-  //       page = firstRef.current?.innerHTML;
-  //       break;
-  //     }
-  //     case "backRef": {
-  //       page = backRef.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPageM2": {
-  //       page = currPageM2.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPageM1": {
-  //       page = currPageM1.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPage": {
-  //       page = currPage.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPageP1": {
-  //       page = currPageP1.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPageP2": {
-  //       page = currPageP2.current.innerHTML;
-  //       break;
-  //     }
-  //     case "nextRef": {
-  //       page = nextRef.current.innerHTML;
-  //       break;
-  //     }
-  //     case "lastRef": {
-  //       page = lastRef.current.innerHTML;
-  //       break;
-  //     }
-  //   }
-
-  //   console.log(page);
-
-  //   switch (page) {
-  //     case "Next": {
-  //       console.log("Go to next page", currentPage + 1);
-  //       pageNo = currentPage + 1;
-  //       // console.log(pageNo);
-  //       dispatch(fetchRecommendations(pageNo));
-  //       break;
-  //     }
-  //     case "Back": {
-  //       console.log("Go to previous page", currentPage - 1);
-  //       if (currentPage !== 1) {
-  //         pageNo = currentPage - 1;
-  //         // console.log(pageNo);
-  //         dispatch(fetchRecommendations(pageNo));
-  //       }
-  //       break;
-  //     }
-  //     case "First": {
-  //       console.log("Go to first page", 1);
-  //       if (currentPage !== 1) {
-  //         pageNo = 1;
-  //         // console.log(pageNo);
-  //         dispatch(fetchRecommendations(pageNo));
-  //       }
-  //       break;
-  //     }
-  //     case "Last": {
-  //       console.log("Go to last page", lastPage);
-  //       if (currentPage !== lastPage) {
-  //         pageNo = lastPage;
-  //         // console.log(pageNo);
-  //         dispatch(fetchRecommendations(pageNo));
-  //       }
-  //       break;
-  //     }
-  //     default: {
-  //       pageNo = parseInt(page);
-  //       // console.log(pageNo);
-  //       dispatch(fetchRecommendations(pageNo));
-  //       break;
-  //     }
-  //   }
-  // }
-
-  function setPage(page) {
+  function pageClick(page) {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
@@ -142,7 +43,7 @@ function Recommendations() {
         ? params.get("page")
         : 1;
 
-    console.log(page);
+    // console.log(page);
 
     dispatch(fetchRecommendations(page));
   }, [params]);
@@ -299,14 +200,14 @@ function Recommendations() {
               <>
                 <div
                   className={styles.firstBtn}
-                  onClick={() => setPage(1)}
+                  onClick={() => pageClick(1)}
                   data-page-btns
                 >
                   First
                 </div>
                 <div
                   className={styles.prevBtn}
-                  onClick={() => setPage(currentPage - 1)}
+                  onClick={() => pageClick(currentPage - 1)}
                   data-page-btns
                 >
                   Back
@@ -321,7 +222,7 @@ function Recommendations() {
                 <>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage - 1)}
+                    onClick={() => pageClick(currentPage - 1)}
                     data-page-btns
                   >
                     {currentPage - 1}
@@ -331,14 +232,14 @@ function Recommendations() {
                 <>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage - 2)}
+                    onClick={() => pageClick(currentPage - 2)}
                     data-page-btns
                   >
                     {currentPage - 2}
                   </div>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage - 1)}
+                    onClick={() => pageClick(currentPage - 1)}
                     data-page-btns
                   >
                     {currentPage - 1}
@@ -357,7 +258,7 @@ function Recommendations() {
                 <>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage + 1)}
+                    onClick={() => pageClick(currentPage + 1)}
                     data-page-btns
                   >
                     {currentPage + 1}
@@ -367,14 +268,14 @@ function Recommendations() {
                 <>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage + 1)}
+                    onClick={() => pageClick(currentPage + 1)}
                     data-page-btns
                   >
                     {currentPage + 1}
                   </div>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage + 2)}
+                    onClick={() => pageClick(currentPage + 2)}
                     data-page-btns
                   >
                     {currentPage + 2}
@@ -389,14 +290,14 @@ function Recommendations() {
               <>
                 <div
                   className={styles.nextBtn}
-                  onClick={() => setPage(currentPage + 1)}
+                  onClick={() => pageClick(currentPage + 1)}
                   data-page-btns
                 >
                   Next
                 </div>
                 <div
                   className={styles.lastBtn}
-                  onClick={() => setPage(lastPage)}
+                  onClick={() => pageClick(lastPage)}
                   data-page-btns
                 >
                   Last
