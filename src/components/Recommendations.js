@@ -109,8 +109,10 @@ function Recommendations() {
                   </Link>
                 </div>
               </div>
-              <div className={styles.content} data-content={pair.content}>
-                {pair.content}
+              <div className={styles.contentDiv}>
+                <div className={styles.content} data-content={pair.content}>
+                  {pair.content}
+                </div>
               </div>
             </div>
           ))

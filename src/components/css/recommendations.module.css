@@ -40,6 +40,7 @@
 
 .animeData {
   width: 100%;
+  padding: 0 1rem;
   display: flex;
   justify-content: flex-start;
   align-self: flex-start;
@@ -56,7 +57,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 .pairHead {
@@ -80,7 +81,7 @@
 
 .animeName {
   /* position: relative; */
-  width: 70%;
+  width: 100%;
   font-weight: 600;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -104,26 +105,32 @@
   z-index: 5;
 }
 
+.contentDiv {
+  height: 2.7rem;
+  width: calc(100% - 1rem);
+  align-self: center;
+  padding: 0.5rem;
+}
+
 .content {
-  /* flex-grow: 1; */
   user-select: none;
   /* position: relative; */
-  height: 2.7rem;
   width: 100%;
-  padding: 0.5rem;
-  padding-bottom: 0;
   font-size: 0.8rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   overflow: hidden;
+  box-shadow: inset 0px 5px rgba(255, 255, 255, 0.2);
 }
 
 .content:hover::after {
   content: attr(data-content);
   position: absolute;
-  width: 90%;
+  align-self: center;
+  width: fit-content;
+  max-width: calc(100% - 2rem);
   top: 98%;
   left: 0.5rem;
   padding: 0.3rem;
@@ -202,7 +209,19 @@
 }
 
 @media screen and (max-width: 700px) {
+  .headingText {
+    font-weight: 800;
+  }
+
   .pairs {
     width: 100%;
+  }
+
+  .pairHead {
+    font-weight: 800;
+  }
+
+  .animeName {
+    font-weight: 800;
   }
 }
