@@ -63,9 +63,19 @@
   font-weight: 600;
 }
 
-.animePoster {
+.animePosterDiv {
+  aspect-ratio: 3/4;
   height: 10rem;
   border-radius: 0.2rem;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.animePoster {
+  aspect-ratio: 3/4;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .animeName {

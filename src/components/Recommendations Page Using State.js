@@ -20,132 +20,121 @@ function Recommendations() {
     (state) => state.recommendations?.data?.pagination
   );
 
-  let currentPage, lastPage;
+  let currentPage,
+    lastPage,
+    pageNo = 1;
 
   if (!loading) {
-    currentPage = parseInt(pagination?.current_page);
+    currentPage = pagination?.current_page;
     lastPage = pagination?.last_visible_page;
   }
 
   // console.log(loading, pairs);
 
-  // const firstRef = useRef("");
-  // const backRef = useRef("");
-  // const currPageM2 = useRef("");
-  // const currPageM1 = useRef("");
-  // const currPage = useRef("");
-  // const currPageP1 = useRef("");
-  // const currPageP2 = useRef("");
-  // const nextRef = useRef("");
-  // const lastRef = useRef("");
+  const firstRef = useRef("");
+  const backRef = useRef("");
+  const currPageM2 = useRef("");
+  const currPageM1 = useRef("");
+  const currPage = useRef("");
+  const currPageP1 = useRef("");
+  const currPageP2 = useRef("");
+  const nextRef = useRef("");
+  const lastRef = useRef("");
 
-  // function pageClick(refName) {
-  //   let page;
-  //   switch (refName) {
-  //     case "firstRef": {
-  //       page = firstRef.current?.innerHTML;
-  //       break;
-  //     }
-  //     case "backRef": {
-  //       page = backRef.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPageM2": {
-  //       page = currPageM2.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPageM1": {
-  //       page = currPageM1.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPage": {
-  //       page = currPage.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPageP1": {
-  //       page = currPageP1.current.innerHTML;
-  //       break;
-  //     }
-  //     case "currPageP2": {
-  //       page = currPageP2.current.innerHTML;
-  //       break;
-  //     }
-  //     case "nextRef": {
-  //       page = nextRef.current.innerHTML;
-  //       break;
-  //     }
-  //     case "lastRef": {
-  //       page = lastRef.current.innerHTML;
-  //       break;
-  //     }
-  //   }
-
-  //   console.log(page);
-
-  //   switch (page) {
-  //     case "Next": {
-  //       console.log("Go to next page", currentPage + 1);
-  //       pageNo = currentPage + 1;
-  //       // console.log(pageNo);
-  //       dispatch(fetchRecommendations(pageNo));
-  //       break;
-  //     }
-  //     case "Back": {
-  //       console.log("Go to previous page", currentPage - 1);
-  //       if (currentPage !== 1) {
-  //         pageNo = currentPage - 1;
-  //         // console.log(pageNo);
-  //         dispatch(fetchRecommendations(pageNo));
-  //       }
-  //       break;
-  //     }
-  //     case "First": {
-  //       console.log("Go to first page", 1);
-  //       if (currentPage !== 1) {
-  //         pageNo = 1;
-  //         // console.log(pageNo);
-  //         dispatch(fetchRecommendations(pageNo));
-  //       }
-  //       break;
-  //     }
-  //     case "Last": {
-  //       console.log("Go to last page", lastPage);
-  //       if (currentPage !== lastPage) {
-  //         pageNo = lastPage;
-  //         // console.log(pageNo);
-  //         dispatch(fetchRecommendations(pageNo));
-  //       }
-  //       break;
-  //     }
-  //     default: {
-  //       pageNo = parseInt(page);
-  //       // console.log(pageNo);
-  //       dispatch(fetchRecommendations(pageNo));
-  //       break;
-  //     }
-  //   }
-  // }
-
-  function setPage(page) {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-
-    // console.log(page);
-    setParams({ page: page });
-  }
-
-  useEffect(() => {
-    const page =
-      params.get("page") !== null &&
-      params.get("page") !== "null" &&
-      params.get("page") !== ""
-        ? params.get("page")
-        : 1;
+  function pageClick(refName) {
+    let page;
+    switch (refName) {
+      case "firstRef": {
+        page = firstRef.current?.innerHTML;
+        break;
+      }
+      case "backRef": {
+        page = backRef.current.innerHTML;
+        break;
+      }
+      case "currPageM2": {
+        page = currPageM2.current.innerHTML;
+        break;
+      }
+      case "currPageM1": {
+        page = currPageM1.current.innerHTML;
+        break;
+      }
+      case "currPage": {
+        page = currPage.current.innerHTML;
+        break;
+      }
+      case "currPageP1": {
+        page = currPageP1.current.innerHTML;
+        break;
+      }
+      case "currPageP2": {
+        page = currPageP2.current.innerHTML;
+        break;
+      }
+      case "nextRef": {
+        page = nextRef.current.innerHTML;
+        break;
+      }
+      case "lastRef": {
+        page = lastRef.current.innerHTML;
+        break;
+      }
+    }
 
     console.log(page);
 
-    dispatch(fetchRecommendations(page));
-  }, [params]);
+    switch (page) {
+      case "Next": {
+        console.log("Go to next page", currentPage + 1);
+        pageNo = currentPage + 1;
+        // console.log(pageNo);
+        dispatch(fetchRecommendations(pageNo));
+        break;
+      }
+      case "Back": {
+        console.log("Go to previous page", currentPage - 1);
+        if (currentPage !== 1) {
+          pageNo = currentPage - 1;
+          // console.log(pageNo);
+          dispatch(fetchRecommendations(pageNo));
+        }
+        break;
+      }
+      case "First": {
+        console.log("Go to first page", 1);
+        if (currentPage !== 1) {
+          pageNo = 1;
+          // console.log(pageNo);
+          dispatch(fetchRecommendations(pageNo));
+        }
+        break;
+      }
+      case "Last": {
+        console.log("Go to last page", lastPage);
+        if (currentPage !== lastPage) {
+          pageNo = lastPage;
+          // console.log(pageNo);
+          dispatch(fetchRecommendations(pageNo));
+        }
+        break;
+      }
+      default: {
+        pageNo = parseInt(page);
+        // console.log(pageNo);
+        dispatch(fetchRecommendations(pageNo));
+        break;
+      }
+    }
+  }
+
+  useEffect(() => {
+    const page = params.get("page");
+
+    console.log(page);
+
+    dispatch(fetchRecommendations(1));
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -157,22 +146,11 @@ function Recommendations() {
               <div className={styles.animeData}>
                 <div className={styles.animeTile}>
                   <div className={styles.pairHead}>If you liked</div>
-                  <Link
-                    to={`/anime/${pair.entry[0].mal_id}`}
-                    className={styles.animePosterDiv}
-                    style={{
-                      backgroundImage: `url(${pair.entry[0].images.jpg.small_image_url})`,
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "cover",
-                    }}
-                  >
-                    <img
-                      src={pair.entry[0].images.jpg.large_image_url}
-                      alt={pair.entry[0].title}
-                      className={styles.animePoster}
-                    />
-                  </Link>
+                  <img
+                    src={pair.entry[0].images.jpg.large_image_url}
+                    alt={pair.entry[0].title}
+                    className={styles.animePoster}
+                  />
                   <Link
                     to={`/anime/${pair.entry[0].mal_id}`}
                     className={styles.animeName}
@@ -183,22 +161,11 @@ function Recommendations() {
                 </div>
                 <div className={styles.animeTile}>
                   <div className={styles.pairHead}>You might like</div>
-                  <Link
-                    to={`/anime/${pair.entry[1].mal_id}`}
-                    className={styles.animePosterDiv}
-                    style={{
-                      backgroundImage: `url(${pair.entry[1].images.jpg.small_image_url})`,
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "cover",
-                    }}
-                  >
-                    <img
-                      src={pair.entry[1].images.jpg.large_image_url}
-                      alt={pair.entry[1].title}
-                      className={styles.animePoster}
-                    />
-                  </Link>
+                  <img
+                    src={pair.entry[1].images.jpg.large_image_url}
+                    alt={pair.entry[1].title}
+                    className={styles.animePoster}
+                  />
                   <Link
                     to={`/anime/${pair.entry[1].mal_id}`}
                     className={styles.animeName}
@@ -299,14 +266,16 @@ function Recommendations() {
               <>
                 <div
                   className={styles.firstBtn}
-                  onClick={() => setPage(1)}
+                  ref={firstRef}
+                  onClick={() => pageClick("firstRef")}
                   data-page-btns
                 >
                   First
                 </div>
                 <div
                   className={styles.prevBtn}
-                  onClick={() => setPage(currentPage - 1)}
+                  ref={backRef}
+                  onClick={() => pageClick("backRef")}
                   data-page-btns
                 >
                   Back
@@ -321,7 +290,8 @@ function Recommendations() {
                 <>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage - 1)}
+                    ref={currPageM1}
+                    onClick={() => pageClick("currPageM1")}
                     data-page-btns
                   >
                     {currentPage - 1}
@@ -331,14 +301,16 @@ function Recommendations() {
                 <>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage - 2)}
+                    ref={currPageM2}
+                    onClick={() => pageClick("currPageM2")}
                     data-page-btns
                   >
                     {currentPage - 2}
                   </div>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage - 1)}
+                    ref={currPageM1}
+                    onClick={() => pageClick("currPageM1")}
                     data-page-btns
                   >
                     {currentPage - 1}
@@ -346,7 +318,12 @@ function Recommendations() {
                 </>
               )}
 
-              <div className={styles.currentPage} data-page-btns>
+              <div
+                className={styles.currentPage}
+                ref={currPage}
+                onClick={() => pageClick("currPage")}
+                data-page-btns
+              >
                 {currentPage}
               </div>
 
@@ -357,7 +334,8 @@ function Recommendations() {
                 <>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage + 1)}
+                    ref={currPageP1}
+                    onClick={() => pageClick("currPageP1")}
                     data-page-btns
                   >
                     {currentPage + 1}
@@ -367,14 +345,16 @@ function Recommendations() {
                 <>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage + 1)}
+                    ref={currPageP1}
+                    onClick={() => pageClick("currPageP1")}
                     data-page-btns
                   >
                     {currentPage + 1}
                   </div>
                   <div
                     className={styles.endpointPages}
-                    onClick={() => setPage(currentPage + 2)}
+                    ref={currPageP2}
+                    onClick={() => pageClick("currPageP2")}
                     data-page-btns
                   >
                     {currentPage + 2}
@@ -389,14 +369,16 @@ function Recommendations() {
               <>
                 <div
                   className={styles.nextBtn}
-                  onClick={() => setPage(currentPage + 1)}
+                  ref={nextRef}
+                  onClick={() => pageClick("nextRef")}
                   data-page-btns
                 >
                   Next
                 </div>
                 <div
                   className={styles.lastBtn}
-                  onClick={() => setPage(lastPage)}
+                  ref={lastRef}
+                  onClick={() => pageClick("lastRef")}
                   data-page-btns
                 >
                   Last
