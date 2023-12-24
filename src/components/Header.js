@@ -1,7 +1,8 @@
 import styles from "./css/header.module.css";
 
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { isMobile } from "react-device-detect";
 
 import mainLogo from "../assets/images/mainlogo.svg";
 import searchIcon from "../assets/images/search.svg";
@@ -21,12 +22,22 @@ function allEventListeners() {
     toggleCircleBG.style.backgroundColor = "#CCBD3B";
 
     toggleCircleBG.style.left = "50%";
+
+    if (isMobile) {
+      document
+        .querySelector(".dark")
+        .style.setProperty("--theme-grid-bg-color", "#252525");
+    }
   } else {
     toggleBG.style.backgroundColor = "#CCBD3B";
 
     toggleCircleBG.style.backgroundColor = "#6A2782";
 
     toggleCircleBG.style.left = "0";
+
+    if (isMobile) {
+      document.body.style.setProperty("--theme-grid-bg-color", "#f5f5f5");
+    }
   }
 }
 
@@ -45,7 +56,16 @@ function Header() {
         <Link to="/" className={styles.logo}>
           <img src={mainLogo} alt="lsAnime" className={styles.logoImg} />
         </Link>
+
         <nav className={styles.links}>
+          <Link to="/recommendations" className={styles.navLink}>
+            Recommendations
+          </Link>
+
+          <Link to="/about" className={styles.navLink}>
+            About
+          </Link>
+
           <Link to="/search" className={styles.search} data-search>
             <div className={styles.searchIconContainer}>
               <img

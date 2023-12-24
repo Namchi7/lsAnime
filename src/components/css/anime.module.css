@@ -8,6 +8,8 @@
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  /* color: white; */
+  /* --anime-info-bg: rgba(51, 51, 51, 0.3); */
 }
 
 .backgroundCover {
@@ -15,7 +17,7 @@
   min-width: 100vw;
   min-height: 100vh;
   inset: 0;
-  background-color: rgba(176, 176, 176, 0.5);
+  background-color: rgba(176, 176, 176, 0.25);
   z-index: -1;
 }
 
@@ -24,14 +26,28 @@
   /* height: 232.45px; */
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 1rem;
+  /* background-color: rgba(51, 51, 51, 0.5); */
+  background-color: var(--anime-info-bg);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.animePosterDiv {
+  border-radius: 0.5rem;
+  height: 232.45px;
+  aspect-ratio: 3/4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
 .animePoster {
-  border-radius: 0.5rem;
-  width: 10rem;
-  height: 232.45px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  height: 100%;
+  aspect-ratio: 3/4;
+  /* height: 232.45px; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
   object-fit: cover;
   object-position: center;
 }
@@ -69,8 +85,10 @@ h1 {
   border-radius: 0.5rem;
   padding: 1rem;
   text-align: center;
-  background-color: rgba(90, 90, 90, 0.25);
-  backdrop-filter: blur(0 0 100px rgba(90, 90, 90, 0.25));
+  /* background-color: rgba(90, 90, 90, 0.25);
+  background-color: rgba(51, 51, 51, 0.5); */
+  background-color: var(--anime-info-bg);
+  backdrop-filter: blur(5px);
 }
 
 .row1Cols {
@@ -86,12 +104,30 @@ h1 {
   font-weight: 600;
 }
 
+.otherRowsDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  /* background-color: rgba(51, 51, 51, 0.5); */
+  background-color: var(--anime-info-bg);
+}
+
 .otherRows {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.rowWithTags {
+  align-items: baseline;
 }
 
 .genreList {
@@ -108,7 +144,7 @@ h1 {
   padding: 0.2rem 0.5rem;
   border: 1px solid black;
   border-radius: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .synonymRow {
@@ -126,6 +162,7 @@ h1 {
 @media screen and (max-width: 800px) {
   .basicInfoContainer {
     flex-direction: column;
+    align-items: center;
   }
 
   .animePoster {
@@ -138,7 +175,7 @@ h1 {
   }
 
   .row1Cols {
-    flex-basis: 20%;
+    flex-basis: 25%;
   }
 
   .topics {
@@ -149,6 +186,7 @@ h1 {
 @media screen and (max-width: 450px) {
   .basicInfoContainer {
     flex-direction: column;
+    align-items: center;
   }
 
   .animePoster {
@@ -161,7 +199,7 @@ h1 {
   }
 
   .row1Cols {
-    flex-basis: 30%;
+    flex-basis: 50%;
   }
 
   .topics {

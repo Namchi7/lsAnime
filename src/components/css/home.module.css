@@ -1,10 +1,11 @@
 .container {
+  position: relative;
   width: 95%;
   max-width: 65rem;
   min-height: calc(100vh - 13rem);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 2rem;
   margin-bottom: 1rem;
@@ -35,6 +36,15 @@
 .viewAll {
   font-size: 0.9rem;
   color: rgb(79, 79, 79);
+  color: var(--theme-text-secondary-color);
+  /* background-color: var(--anime-info-bg); */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.viewAll:hover {
+  color: var(--view-all-hover-color);
+  background-color: var(--view-all-hover-bg);
 }
 
 .previewTiles {
@@ -89,7 +99,7 @@
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
-.animeName:hover::after {
+/* .animeName:hover::after {
   content: attr(data-anime-name);
   position: absolute;
   display: block;
@@ -100,9 +110,8 @@
   border-radius: 0.3rem;
   max-width: 100%;
   bottom: 10%;
-  /* margin-bottom: 0.2rem; */
   font-size: 0.7rem;
   white-space: break-spaces;
   text-align: center;
   z-index: 5;
-}
+} */

@@ -6,10 +6,10 @@ export const fetchFilteredAnime = createAsyncThunk(
     let filterString = "";
 
     if (filters.startDate !== "" && filters.startDate !== undefined) {
-      filterString += `&start_date=${filters.startDate}`;
+      filterString += `&start_date=${filters.startDate}-01-01`;
     }
     if (filters.endDate !== "" && filters.endDate !== undefined) {
-      filterString += `&end_date=${filters.endDate}`;
+      filterString += `&end_date=${filters.endDate}-01-01`;
     }
     if (filters.status !== "" && filters.status !== undefined) {
       filterString += `&status=${filters.status}`;

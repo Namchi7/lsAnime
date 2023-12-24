@@ -1,0 +1,86 @@
+.container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0.25rem; */
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: whitesmoke;
+  /* gap: 0.5rem; */
+  z-index: 999;
+}
+
+.menuBurger {
+  aspect-ratio: 1/1;
+  width: 3rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.menuBurger:hover {
+  cursor: pointer;
+}
+
+.menuIcon {
+  width: 100%;
+}
+
+.menuOpen {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.menuOpen > hr {
+  width: 100%;
+  opacity: 0.5;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.navLink {
+  text-align: right;
+  width: 100%;
+  color: rgb(68, 68, 68);
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.close {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.closeIcon {
+  height: 3rem;
+  border-radius: 0.25rem;
+  background-color: rgba(227, 227, 227, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.closeIcon:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    display: flex;
+  }
+}

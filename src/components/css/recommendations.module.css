@@ -34,6 +34,7 @@
   padding: 0.5rem 0;
   border-radius: 0.5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  background-color: var(--recom-pair-bg);
   display: flex;
   flex-direction: column;
 }
@@ -122,7 +123,6 @@
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   overflow: hidden;
-  box-shadow: inset 0px 5px rgba(255, 255, 255, 0.2);
 }
 
 .content:hover::after {
@@ -133,6 +133,7 @@
   max-width: calc(100% - 2rem);
   top: 98%;
   left: 0.5rem;
+  align-self: center;
   padding: 0.3rem;
   background-color: black;
   color: white;

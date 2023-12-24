@@ -2,10 +2,15 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import styles from "./css/home.module.css";
+import { useState } from "react";
 
 function Home() {
   const previewData = useSelector((state) => state.previewData);
   const loading = previewData.isLoading;
+
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [hoverData, setHoverData] = useState("");
 
   document.body.style.backgroundImage = "";
   document.body.scrollTop = 0; // For Safari
@@ -26,8 +31,82 @@ function Home() {
   //   console.log(window.innerWidth);
   // });
 
+  const hoverStyle = {
+    left: mousePosition.x,
+    top: mousePosition.y,
+  };
+
+  function handleMouseEnter(data) {
+    setIsHovered(true);
+    setHoverData(data);
+  }
+
+  function handleMouseLeave() {
+    setIsHovered(false);
+    setHoverData("");
+  }
+
+  function handleMouseMove(e) {
+    // setMousePosition({ x: e.clientX, y: e.clientY });
+    // console.log(mousePosition);
+    const targetElem = e.target;
+
+    const rect = targetElem.getBoundingClientRect();
+    const parentRect = targetElem.parentElement.getBoundingClientRect();
+    const parentPRect = targetElem
+      .closest(`.${styles.container}`)
+      .getBoundingClientRect();
+
+    // console.log(rect, parentRect);
+
+    const y = rect.y - parentPRect.y;
+    const x = e.clientX - parentPRect.x;
+    console.log(e.clientY, rect.y - parentPRect.y);
+
+    // setMousePosition({ x: e.clientX, y: y });
+    // setMousePosition({ x: x, y: rect.y - parentPRect.y });
+    // setMousePosition({ x: 0, y: 0 });
+  }
+
+  function handleMouseOver(e) {
+    const targetElem = e.target;
+
+    const rect = targetElem.getBoundingClientRect();
+    const parentPRect = targetElem
+      .closest(`.${styles.container}`)
+      .getBoundingClientRect();
+
+    // console.log(rect, parentRect);
+
+    const y = rect.y - parentPRect.y + 25;
+    const x = rect.x - parentPRect.x;
+
+    setMousePosition({ x: x, y: y });
+  }
+
+  // if (isHovered) {
+  //   // Calculate the dynamic div position to stay within the viewport
+  //   const dynamicDivLeft = Math.min(mousePosition.x, window.innerWidth - 170);
+
+  //   // const dynamicDivTop = Math.min(
+  //   //   mousePosition.y + 20,
+  //   //   window.innerHeight - 170
+  //   // );
+
+  //   hoverStyle.left = `${dynamicDivLeft}px`;
+  //   // hoverStyle.top = `${dynamicDivTop}px`;
+  //   // set the top so that it give the position inside the .container not the viewport
+  // }
+
   return (
     <div className={styles.container}>
+      {isHovered && (
+        <div className="hoverShow" style={hoverStyle} data-home-hover>
+          {hoverData}
+          {/* {`${hoverStyle.left} ${hoverStyle.top}`} */}
+        </div>
+      )}
+
       <div className={styles.topicContainer}>
         <div className={styles.topicHeader}>
           <div className={styles.topic}>This Season</div>
@@ -62,6 +141,12 @@ function Home() {
                       />
                     </div>
                     <div
+                      onMouseEnter={() =>
+                        handleMouseEnter(item.titles[0].title)
+                      }
+                      onMouseLeave={() => handleMouseLeave()}
+                      // onMouseMove={(e) => handleMouseMove(e)}
+                      onMouseOver={(e) => handleMouseOver(e)}
                       className={styles.animeName}
                       data-anime-name={item.titles[0].title}
                     >
@@ -110,6 +195,12 @@ function Home() {
                       />
                     </div>
                     <div
+                      onMouseEnter={() =>
+                        handleMouseEnter(item.titles[0].title)
+                      }
+                      onMouseLeave={() => handleMouseLeave()}
+                      // onMouseMove={(e) => handleMouseMove(e)}
+                      onMouseOver={(e) => handleMouseOver(e)}
                       className={styles.animeName}
                       data-anime-name={item.titles[0].title}
                     >
@@ -158,6 +249,12 @@ function Home() {
                       />
                     </div>
                     <div
+                      onMouseEnter={() =>
+                        handleMouseEnter(item.titles[0].title)
+                      }
+                      onMouseLeave={() => handleMouseLeave()}
+                      // onMouseMove={(e) => handleMouseMove(e)}
+                      onMouseOver={(e) => handleMouseOver(e)}
                       className={styles.animeName}
                       data-anime-name={item.titles[0].title}
                     >

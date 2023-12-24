@@ -1,6 +1,6 @@
 .App {
-  /* position: relative; */
-  min-height: 100dvh;
+  position: relative;
+  min-height: 100svh;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -9,19 +9,10 @@
   gap: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .appTop {
+  position: relative;
   width: 100%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -33,9 +24,20 @@
   color: #61dafb;
 }
 
-.dark {
-  background-color: #222;
+.hoverShow {
+  position: absolute;
+  width: fit-content;
+  max-width: 160px;
+  display: block;
+  padding: 0.5rem;
+  background-color: rgb(50, 50, 50);
   color: whitesmoke;
+  border: 1px solid whitesmoke;
+  border-radius: 0.3rem;
+  font-size: 0.7rem;
+  white-space: break-spaces;
+  text-align: center;
+  z-index: 5;
 }
 
 /* .goToTop {

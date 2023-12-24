@@ -6,6 +6,7 @@ import "./App.css";
 import { fetchPreview } from "./components/redux/reducers/landingPage.js";
 
 import Header from "./components/Header.js";
+import HeaderMenu from "./components/HeaderMenu.js";
 import Home from "./components/Home.js";
 import Filter from "./components/Filter.js";
 import About from "./components/About.js";
@@ -16,6 +17,7 @@ import Recommendations from "./components/Recommendations.js";
 import Api from "./components/API.js";
 import NotFound from "./components/NotFound.js";
 import Footer from "./components/Footer.js";
+import GridBG from "./components/GridBG.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +36,9 @@ function App() {
 
   return (
     <div className="App">
+      <GridBG />
       <div className="appTop">
+        <HeaderMenu />
         <Header />
         <Routes>
           <Route exact path="/" element={<Home />} />

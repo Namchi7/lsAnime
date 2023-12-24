@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./css/anime.module.css";
 import { fetchCurrentAnimeData } from "./redux/reducers/currentAnimePage.js";
 
+import pageBG from "../assets/images/lsanimeBG1.jpg";
+
 const months = [
   "Jan",
   "Feb",
@@ -55,7 +57,8 @@ function Anime() {
     data = currentAnime.data;
     resolvedData = resolveData(data);
     bgImgUrl = data.images.jpg.large_image_url;
-    setBodyBGImg(bgImgUrl);
+
+    // setBodyBGImg(pageBG);
   }
 
   const fullPath = window.location.pathname;
@@ -79,19 +82,31 @@ function Anime() {
     <div className={styles.container}>
       {!loading ? (
         <>
-          <div className={styles.backgroundCover} />
+          {/* <div className={styles.backgroundCover} /> */}
           <div className={styles.basicInfoContainer}>
-            <img
-              src={data.images.jpg.large_image_url}
-              alt={data.title}
-              className={styles.animePoster}
-            />
+            <div
+              className={styles.animePosterDiv}
+              style={{
+                backgroundImage: `url(${data.images.jpg.small_image_url})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            >
+              <img
+                src={data.images.jpg.large_image_url}
+                alt={data.title}
+                className={styles.animePoster}
+              />
+            </div>
+
             <div className={styles.basicInfo}>
               <h1>{data.title}</h1>
               {/* <h1>Anime Name</h1> */}
               <div className={styles.animeNameSynonyms}>
                 <span>{data.title_japanese}</span>
                 {/* <span>Anime Name Native</span> */}
+                {" | "}
                 <span>{data.title_english}</span>
                 {/* <span>Anime Name English</span> */}
               </div>
@@ -144,16 +159,19 @@ function Anime() {
                 </div>
               </div>
 
-              <div className={styles.row1Cols}>
+              {/* <div className={styles.row1Cols}>
                 <div className={styles.topics}>End Date</div>
                 <div className={styles.row1Content}>
                   {resolvedData.aired.to}
                 </div>
-              </div>
+              </div> */}
 
               <div className={styles.row1Cols}>
                 <div className={styles.topics}>Season</div>
-                <div className={styles.row1Content}>
+                <div
+                  style={{ textTransform: "capitalize" }}
+                  className={styles.row1Content}
+                >
                   {data.season !== null ? data.season : "?"}
                 </div>
               </div>
@@ -165,12 +183,12 @@ function Anime() {
                 </div>
               </div>
 
-              <div className={styles.row1Cols}>
+              {/* <div className={styles.row1Cols}>
                 <div className={styles.topics}>Scored By</div>
                 <div className={styles.row1Content}>
                   {data.scored_by !== null ? data.scored_by : "?"}
                 </div>
-              </div>
+              </div> */}
 
               <div className={styles.row1Cols}>
                 <div className={styles.topics}>Source</div>
@@ -180,76 +198,82 @@ function Anime() {
               </div>
             </div>
 
-            <div className={styles.otherRows}>
-              <div className={styles.topics}>Genre: </div>
-              <div className={styles.genreList}>
-                {" "}
-                {data.genres.length === 0
-                  ? "?"
-                  : data.genres.map((item, index) => (
-                      <div className={styles.genre} key={index}>
-                        {item.name}
-                      </div>
-                    ))}
+            <div className={styles.otherRowsDiv}>
+              <div className={`${styles.otherRows} ${styles.rowWithTags}`}>
+                <div className={styles.topics}>Genre: </div>
+                <div className={styles.genreList}>
+                  {" "}
+                  {data.genres.length === 0
+                    ? "?"
+                    : data.genres.map((item, index) => (
+                        <div className={styles.genre} key={index}>
+                          {item.name}
+                        </div>
+                      ))}
+                </div>
               </div>
-            </div>
 
-            <div className={styles.otherRows}>
-              <div className={styles.topics}>Themes: </div>
-              <div className={styles.genreList}>
-                {" "}
-                {data.themes.length === 0
-                  ? "?"
-                  : data.themes.map((item, index) => (
-                      <div className={styles.genre} key={index}>
-                        {item.name}
-                      </div>
-                    ))}
+              <div className={`${styles.otherRows} ${styles.rowWithTags}`}>
+                <div className={styles.topics}>Themes: </div>
+                <div className={styles.genreList}>
+                  {" "}
+                  {data.themes.length === 0
+                    ? "?"
+                    : data.themes.map((item, index) => (
+                        <div className={styles.genre} key={index}>
+                          {item.name}
+                        </div>
+                      ))}
+                </div>
               </div>
-            </div>
 
-            <div className={styles.otherRows}>
-              <div className={styles.topics}>Rating: </div>
-              <div className={styles.rating}>{data.rating}</div>
-            </div>
-
-            <div className={`${styles.otherRows} ${styles.synonymRow}`}>
-              <div className={styles.topics}>Title Synonyms: </div>
-              <div className={styles.titleSynonyms}>
-                {data.titles.map((item, index) => (
-                  <div className={styles.synonym} key={index}>
-                    {item.type === "Default"
-                      ? "Romanji"
-                      : item.type === "Synonym"
-                      ? "Other Synonym"
-                      : item.type}
-                    : {item.title}
-                  </div>
-                ))}
+              <div className={styles.otherRows}>
+                <div className={styles.topics}>Rating: </div>
+                <div className={styles.rating}>{data.rating}</div>
               </div>
-            </div>
 
-            <div className={styles.otherRows}>
-              <div className={styles.topics}>Producers: </div>
-              <div className={styles.producers}>
-                <span key="0">
-                  {data.producers === null ? data.producers[0].name : "?"}
-                </span>
-                {data.producers.map((item, index) =>
-                  index > 0 ? <span key={index}>, {item.name}</span> : ""
-                )}
+              <div className={`${styles.otherRows} ${styles.synonymRow}`}>
+                <div className={styles.topics}>Title Synonyms: </div>
+                <div className={styles.titleSynonyms}>
+                  {data.titles.map((item, index) => (
+                    <div className={styles.synonym} key={index}>
+                      {item.type === "Default"
+                        ? "Romanji"
+                        : item.type === "Synonym"
+                        ? "Other Synonym"
+                        : item.type}
+                      : {item.title}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className={styles.otherRows}>
-              <div className={styles.topics}>Studios: </div>
-              <div className={styles.studios}>
-                <span key="0">
-                  {data.studios === null ? data?.studios[0]?.name : "?"}
-                </span>
-                {data.studios.map((item, index) =>
-                  index > 0 ? <span key={index}>, {item.name}</span> : ""
-                )}
+              <div className={styles.otherRows}>
+                <div className={styles.topics}>Producers: </div>
+                <div className={styles.producers}>
+                  {data.producers === null ? <span key="0">?</span> : ""}
+                  {data.producers.map((item, index) =>
+                    index > 0 ? (
+                      <span key={index}>, {item.name}</span>
+                    ) : (
+                      <span key={index}>{item.name}</span>
+                    )
+                  )}
+                </div>
+              </div>
+
+              <div className={styles.otherRows}>
+                <div className={styles.topics}>Studios: </div>
+                <div className={styles.studios}>
+                  {data.studios === null ? <span key="0">?</span> : ""}
+                  {data.studios.map((item, index) =>
+                    index > 0 ? (
+                      <span key={index}>, {item.name}</span>
+                    ) : (
+                      <span key={index}>{item.name}</span>
+                    )
+                  )}
+                </div>
               </div>
             </div>
           </div>
