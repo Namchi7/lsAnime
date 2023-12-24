@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./css/anime.module.css";
 import { fetchCurrentAnimeData } from "./redux/reducers/currentAnimePage.js";
 
-import pageBG from "../assets/images/lsanimeBG1.jpg";
-
 const months = [
   "Jan",
   "Feb",
